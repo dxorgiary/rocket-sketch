@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.dsdeveloper.rocketsketch",
+        "sha256_cert_fingerprints": ["39:7B:51:FC:FE:D2:41:9A:CD:08:FC:F8:2C:65:C4:AC:0A:E1:7F:CA:CF:91:2F:7E:F1:DA:FD:1E:6C:5B:A0:AA"]
+      }
+    }]
