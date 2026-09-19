@@ -1,17 +1,41 @@
 {
   "name": "Rocket Sketch",
   "short_name": "Rocket Sketch",
-  "description": "A hand-drawn notebook-style rocket game — dodge spikes and walls, collect coins, grab magnets and shields, and fly as far as you can!",
+  "description": "A hand-sketched arcade dodger — steer your Rocket, Helicopter, or Jet past spikes and aliens, collect coins and diamonds, and unlock custom colors and backgrounds.",
+  "id": "/",
   "start_url": "./index.html",
   "scope": "./",
-  "id": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fdfdfb",
   "theme_color": "#111111",
+  "lang": "en",
+  "categories": ["games", "arcade"],
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
-  ]
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": []
 }
