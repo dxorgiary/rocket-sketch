@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +26,9 @@
     -webkit-user-select: none; user-select: none;
     -webkit-tap-highlight-color: transparent;
     font-family: 'PixelTitle', 'Courier New', monospace;
-    color: #111;
+    color: var(--theme-c, #111);
     line-height: 1.7;
+    --theme-c: #111111;
   }
 
   #stage {
@@ -41,7 +43,7 @@
   #topBar {
     position: fixed; top: 0; left: 0; right: 0;
     height: 52px;
-    background: #111;
+    background: var(--theme-c);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 10px;
     box-shadow: 0 3px 0 rgba(0,0,0,0.25);
@@ -50,7 +52,7 @@
   }
   .bar-item {
     display: flex; align-items: center;
-    color: #fff;
+    color: var(--theme-ic, #fff);
     font-size: 10px;
     font-weight: bold;
     letter-spacing: 0px;
@@ -62,10 +64,11 @@
     cursor: pointer;
     width: 34px; height: 34px;
     justify-content: center;
-    border: 2px solid #fff;
+    border: 2px solid var(--theme-ic, #fff);
     border-radius: 50%;
     flex: 0 0 auto;
   }
+  #settingsBtn svg circle, #settingsBtn svg path { stroke: var(--theme-ic, #fff); }
   #settingsBtn svg { width: 19px; height: 19px; }
   .hud-icon {
     width: 17px; height: 17px;
@@ -104,7 +107,7 @@
   .sketch-title {
     font-size: 26px;
     font-weight: bold;
-    border: 3px solid #111;
+    border: 3px solid var(--theme-c);
     border-radius: 16px 24px 18px 26px / 22px 14px 26px 16px;
     padding: 10px 26px;
     margin-bottom: 18px;
@@ -142,9 +145,9 @@
   }
 
   .sketch-btn {
-    border: 3px solid #111;
+    border: 3px solid var(--theme-c);
     border-radius: 14px 20px 16px 22px / 20px 12px 22px 14px;
-    background: #fff;
+    background: var(--theme-c);
     font-size: 13px;
     font-weight: bold;
     padding: 12px 22px;
@@ -152,7 +155,7 @@
     cursor: pointer;
     box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
     font-family: inherit;
-    color: #111;
+    color: var(--theme-ic, #fff);
   }
   .sketch-btn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 rgba(0,0,0,0.2); }
 
@@ -165,37 +168,57 @@
     z-index: 30;
   }
   #popupCard {
-    border: 3px solid #111;
+    border: 3px solid var(--theme-c);
+    border-top: 10px solid var(--theme-c);
     border-radius: 18px 26px 20px 28px / 24px 16px 28px 18px;
     background: #fff;
-    padding: 24px 26px;
-    width: 78vw;
-    max-width: 340px;
+    padding: 14px 14px;
+    width: 92vw;
+    max-width: 400px;
     text-align: center;
     box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
     transform: scale(0.9);
     animation: popIn 0.35s ease forwards;
+    max-height: 96vh;
+    overflow-y: auto;
+    position: relative;
   }
+  #popupSettingsBtn {
+    position: absolute;
+    top: 8px; left: 8px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--theme-c);
+    border: 2px solid var(--theme-c);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+  #popupSettingsBtn svg circle, #popupSettingsBtn svg path { stroke: var(--theme-ic, #fff); }
+  #popupSettingsBtn svg { width: 16px; height: 16px; }
   @keyframes popIn {
     0% { transform: scale(0.7); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
   }
   #popupCard h1 {
-    font-size: 15px; margin: 0 0 10px;
+    font-size: 13px; margin: 4px 0 6px;
     letter-spacing: 1px;
-    line-height: 1.8;
+    line-height: 1.4;
   }
-  #popupCard .row { font-size: 10px; margin: 4px 0; }
-  #popupCard .big { font-size: 15px; font-weight: bold; margin: 2px 0 10px; }
-  #popupCard .best { font-size: 9px; color: #444; margin-top: 10px; border-top: 2px dashed #111; padding-top: 8px; line-height: 2; }
-  #popupBtns { display: flex; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+  .stats-line {
+    display: flex; justify-content: center; gap: 14px;
+    font-size: 11px; margin: 2px 0 8px; flex-wrap: wrap;
+  }
+  .stats-line b { font-size: 12px; }
+  #popupCard .best { font-size: 9px; color: #444; margin-top: 10px; border-top: 2px dashed var(--theme-c); padding-top: 8px; line-height: 2; }
+  #popupBtns { display: flex; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
 
 
   /* ---------------- IN-GAMEPLAY GUIDED TUTORIAL ---------------- */
   #tutorialBanner {
     position: fixed; top: 104px; left: 50%; transform: translateX(-50%);
     max-width: 82vw;
-    border: 2.5px solid #111;
+    border: 2.5px solid var(--theme-c);
     border-radius: 12px 18px 14px 20px / 16px 10px 20px 12px;
     background: #fff;
     padding: 8px 16px;
@@ -230,7 +253,7 @@
     position: fixed; top: 60px; right: 12px;
     font-size: 9px; font-weight: bold; color: #444;
     background: rgba(255,255,255,0.85);
-    border: 2px solid #111;
+    border: 2px solid var(--theme-c);
     border-radius: 8px;
     padding: 5px 10px;
     z-index: 13;
@@ -247,7 +270,8 @@
     z-index: 40;
   }
   #settingsCard {
-    border: 3px solid #111;
+    border: 3px solid var(--theme-c);
+    border-top: 10px solid var(--theme-c);
     border-radius: 18px 26px 20px 28px / 24px 16px 28px 18px;
     background: #fff;
     padding: 20px 22px;
@@ -268,7 +292,7 @@
     line-height: 1.8;
   }
   .settings-divider {
-    border-top: 2px dashed #111; margin: 6px 0;
+    border-top: 2px dashed var(--theme-c); margin: 6px 0;
   }
   .sketch-btn.small {
     font-size: 10px; padding: 8px 12px; margin: 4px;
@@ -276,18 +300,213 @@
   #settingsBtns { display: flex; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
   #soundToggleBtn { min-width: 64px; }
   .settings-label { display: flex; align-items: center; }
-  .settings-label svg { width: 16px; height: 16px; margin-right: 6px; }
+  /* ---------------- SHIP SHOP (added) ---------------- */
+  #diamondBadge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--theme-c);
+    border: 2.5px solid var(--theme-c);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px; font-weight: bold; color: var(--theme-ic, #fff);
+    margin: 2px 0 6px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  }
+  #diamondBadge .diamond-ico { font-size: 12px; }
+  #shopPanel {
+    border: 2.5px solid var(--theme-c);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 4px;
+    text-align: left;
+  }
+  #shopTabs { display: flex; border-bottom: 2.5px solid var(--theme-c); }
+  .shop-tab {
+    flex: 1; text-align: center;
+    font-size: 10px; font-weight: bold;
+    padding: 8px 2px;
+    cursor: pointer;
+    background: #f1f1ee;
+    border-right: 2px solid var(--theme-c);
+    border-bottom: 2.5px solid var(--theme-c);
+    margin-bottom: -2.5px;
+    letter-spacing: 0.5px;
+  }
+  .shop-tab:last-child { border-right: none; }
+  .shop-tab.active { background: #fff; border-bottom-color: #fff; }
+  .shop-tab-panel { padding: 10px 8px; }
+  .shop-soon { font-size: 10px; text-align: center; color: #555; padding: 18px 6px; line-height: 1.7; }
+  .ship-row {
+    display: flex; gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 2px 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ship-card {
+    flex: 0 0 78%;
+    scroll-snap-align: center;
+    border: 2.5px solid var(--theme-c);
+    border-radius: 14px;
+    padding: 8px 8px 10px;
+    text-align: center;
+    background: #fdfdfb;
+  }
+  .ship-card.equipped { background: #fff6cf; box-shadow: 0 0 0 3px #ffd400 inset; }
+  .ship-card canvas { display: block; margin: 0 auto; }
+  .ship-name { font-size: 12px; font-weight: bold; margin-bottom: 2px; letter-spacing: 0.5px; }
+  .ship-colors {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 4px; margin: 5px auto; max-width: 190px;
+  }
+  .part-chips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin: 5px 0; }
+  .part-chip {
+    font-size: 10px; font-weight: bold;
+    border: 2px solid #111;
+    border-radius: 7px;
+    padding: 4px 4px;
+    cursor: pointer;
+    background: #eee;
+  }
+  .part-chip.active { background: var(--theme-c, #111); color: #fff; }
+  .color-dot {
+    width: 19px; height: 19px; border-radius: 50%;
+    border: 2px solid var(--theme-c);
+    cursor: pointer;
+    margin: 0 auto;
+  }
+  .color-dot.selected { box-shadow: 0 0 0 3px var(--theme-c); }
+  .ship-cost {
+    font-size: 11px; font-weight: bold;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    margin-bottom: 5px;
+  }
+  .ship-buy-btn {
+    font-family: inherit;
+    font-size: 11px; font-weight: bold;
+    border: 2.5px solid var(--theme-c);
+    border-radius: 9px;
+    padding: 6px 6px;
+    width: 100%;
+    background: #eee;
+    cursor: pointer;
+  }
+  .ship-buy-btn.can-buy { background: #7be27b; }
+  .ship-buy-btn.locked { background: #ddd; color: #888; cursor: default; }
+  .ship-buy-btn.equipped-btn { background: #ffd400; }
+  .ship-buy-btn.save-btn {
+    background: #ddd; color: #999;
+    filter: blur(1.2px);
+    opacity: 0.6;
+    pointer-events: none;
+    margin-bottom: 6px;
+  }
+  .ship-buy-btn.save-btn.active {
+    background: #7be27b; color: #111;
+    filter: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .graphic-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 2px;
+    border-bottom: 1.5px dashed #ccc;
+  }
+  .graphic-row:last-child { border-bottom: none; }
+  .graphic-row-label { font-size: 10px; font-weight: bold; }
+  .graphic-row-dots { display: flex; gap: 4px; flex-wrap: wrap; max-width: 160px; }
+  .gfx-canvas { flex-shrink: 0; }
+  .theme-intro { font-size: 10px; text-align: center; padding: 6px 4px 8px; color: #444; }
+  .theme-colors { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding-bottom: 8px; }
+  .theme-dot { width: 26px; height: 26px; }
+  .template-list {
+    display: flex; gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 2px 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .template-card {
+    flex: 0 0 78%;
+    scroll-snap-align: center;
+    border: 2.5px solid var(--theme-c);
+    border-radius: 12px;
+    padding: 8px;
+    text-align: center;
+    background: #fdfdfb;
+  }
+  .template-card.equipped { background: #fff6cf; box-shadow: 0 0 0 3px #ffd400 inset; }
+  .template-canvas { display: block; margin: 0 auto 6px; border-radius: 6px; max-width: 100%; height: auto; }
+  .template-label { font-size: 12px; font-weight: bold; margin-bottom: 6px; }
+
+  .alien-warn-side {
+    position: fixed;
+    top: 0; bottom: 0;
+    width: 22px;
+    z-index: 14;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(to right, rgba(255,20,20,0.65), rgba(255,20,20,0));
+  }
+  #alienWarnLeft { left: 0; }
+  #alienWarnRight { right: 0; background: linear-gradient(to left, rgba(255,20,20,0.65), rgba(255,20,20,0)); }
+  .alien-warn-side.alien-blink { animation: alienRedBlink 0.5s steps(1, end) infinite; }
+  @keyframes alienRedBlink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* ---------------- TEST AD OVERLAY (added) ---------------- */
+  #testAdOverlay {
+    position: fixed; inset: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.88);
+    z-index: 60;
+  }
+  #testAdCard {
+    width: 84vw; max-width: 340px;
+    background: #fff;
+    border: 3px solid #111;
+    border-radius: 14px;
+    text-align: center;
+    padding: 18px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+  }
+  #testAdLabel {
+    display: inline-block;
+    background: #ffd400;
+    border: 2px solid #111;
+    border-radius: 6px;
+    font-size: 10px; font-weight: bold;
+    padding: 2px 10px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  #testAdBody { padding: 10px 0 16px; }
+  #testAdIcon { font-size: 40px; margin-bottom: 8px; }
+  #testAdText { font-size: 13px; font-weight: bold; line-height: 1.7; }
+  #testAdReason { font-size: 10px; font-weight: normal; color: #666; }
+  #testAdTimer { font-size: 10px; color: #888; }
 
 </style>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#111111">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <linearGradient id="diaGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8fbff"/>
+      <stop offset="45%" stop-color="#7fe0f0"/>
+      <stop offset="100%" stop-color="#1f9fc4"/>
+    </linearGradient>
+  </defs>
+</svg>
 
 <div id="stage">
   <canvas id="game"></canvas>
+
+  <!-- ================= ALIEN WARNING LIGHTS (added) ================= -->
+  <div id="alienWarnLeft" class="alien-warn-side"></div>
+  <div id="alienWarnRight" class="alien-warn-side"></div>
 
   <!-- ================= TOP BAR ================= -->
   <div id="topBar">
@@ -316,6 +535,18 @@
       <div class="settings-row">
         <span>Sound</span>
         <button id="soundToggleBtn" class="sketch-btn small">ON</button>
+      </div>
+      <div class="settings-row">
+        <span>🚀 Rocket Sound</span>
+        <button id="rocketSoundToggleBtn" class="sketch-btn small">ON</button>
+      </div>
+      <div class="settings-row">
+        <span>🔔 Icon Sound</span>
+        <button id="iconSoundToggleBtn" class="sketch-btn small">ON</button>
+      </div>
+      <div class="settings-row">
+        <span>📳 Vibration</span>
+        <button id="vibrationToggleBtn" class="sketch-btn small">ON</button>
       </div>
 
       <div class="settings-divider"></div>
@@ -351,12 +582,12 @@
       </svg>
     </div>
     <div class="sketch-title pixel-title">ROCKET SKETCH</div>
-    <div class="sketch-sub">Touch LEFT side of screen to move left.<br>Touch RIGHT side to move right.<br>Avoid spikes &amp; walls. Collect coins!</div>
+    <div class="sketch-sub">One finger is all you need — touch and DRAG anywhere. The rocket follows your finger!<br>Avoid spikes &amp; walls. Collect coins!</div>
     <button class="sketch-btn" id="startBtn">▶ START</button>
   </div>
 
   <!-- ================= IN-GAMEPLAY GUIDED TUTORIAL ================= -->
-  <div id="tutorialBanner">Touch LEFT or RIGHT side to steer your rocket!</div>
+  <div id="tutorialBanner">Touch and DRAG anywhere — the rocket follows your finger!</div>
   <div id="arrowLeft" class="tutorial-arrow">
     <svg viewBox="0 0 100 100"><polygon points="82,8 82,92 14,50" fill="#111"/></svg>
   </div>
@@ -368,19 +599,46 @@
   <!-- ================= GAME OVER POPUP ================= -->
   <div id="gameOverPopup">
     <div id="popupCard">
+      <button id="popupSettingsBtn" aria-label="Settings">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M12 3.5v2.4M12 18.1v2.4M20.5 12h-2.4M5.9 12H3.5M17.7 6.3l-1.7 1.7M8 16l-1.7 1.7M17.7 17.7L16 16M8 8 6.3 6.3" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      </button>
       <h1>ROCKET CRASHED</h1>
-      <div class="row">You reached</div>
-      <div class="big"><span id="finalDist">0</span> m</div>
-      <div class="row">Coins</div>
-      <div class="big"><span id="finalCoins">0</span></div>
-      <div class="best">
-        Best Distance : <span id="bestDistText">0</span> m<br>
-        Best Coins : <span id="bestCoinsText">0</span>
+      <div class="stats-line">
+        <span class="stat-item">You reached: <b><span id="finalDist">0</span> m</b></span>
+        <span class="stat-item">Coins: <b><span id="finalCoins">0</span></b></span>
       </div>
+
+      <!-- ================= SHIP SHOP (added) ================= -->
+      <div style="text-align:center;">
+        <div id="diamondBadge"><svg class="diamond-ico" viewBox="-20 -22 40 44" width="14" height="15"><polygon points="0,-20 14.4,-3 0,20 -14.4,-3" fill="url(#diaGrad)" stroke="#0d6f8c" stroke-width="2"/><line x1="0" y1="-20" x2="0" y2="20" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><line x1="-14.4" y1="-3" x2="14.4" y2="-3" stroke="rgba(255,255,255,0.6)" stroke-width="1"/></svg><span id="diamondCountText">0</span></div>
+      </div>
+      <div id="shopPanel">
+        <div id="shopTabs">
+          <div class="shop-tab active" id="shopTabBtnRocket">ROCKET</div>
+          <div class="shop-tab" id="shopTabBtnGraphic">GRAPHIC</div>
+          <div class="shop-tab" id="shopTabBtnTheme">TEMPLATE</div>
+        </div>
+        <div id="shopTabRocket" class="shop-tab-panel"></div>
+        <div id="shopTabGraphic" class="shop-tab-panel" style="display:none;"></div>
+        <div id="shopTabTheme" class="shop-tab-panel" style="display:none;"></div>
+      </div>
+
       <div id="popupBtns">
         <button class="sketch-btn" id="retryBtn">↻ Retry</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ================= TEST AD OVERLAY (added) ================= -->
+<div id="testAdOverlay">
+  <div id="testAdCard">
+    <div id="testAdLabel">TEST AD</div>
+    <div id="testAdBody">
+      <div id="testAdIcon">📺</div>
+      <div id="testAdText">AdMob Interstitial<br><span id="testAdReason">—</span></div>
+    </div>
+    <div id="testAdTimer">Closing in <span id="testAdCountdown">3</span>s</div>
   </div>
 </div>
 
@@ -430,7 +688,7 @@
   }
 
   function beep(freq, dur, type, vol) {
-    if (muted || !actx) return;
+    if (muted || !iconSoundOn || !actx) return;
     var t0 = actx.currentTime;
     var osc = actx.createOscillator();
     var gain = actx.createGain();
@@ -446,10 +704,166 @@
   }
 
   function sndCoin() { beep(880, 0.12, "square", 0.15); beep(1200, 0.08, "square", 0.1); }
-  function sndMagnet() { beep(300, 0.2, "sawtooth", 0.12); beep(500, 0.2, "sawtooth", 0.1); }
-  function sndShield() { beep(200, 0.25, "triangle", 0.18); beep(400, 0.2, "triangle", 0.12); }
-  function sndCrash() { beep(120, 0.35, "sawtooth", 0.25); beep(60, 0.4, "square", 0.2); }
+  function beepAt(freq, dur, type, vol, delay) {
+    if (muted || !iconSoundOn || !actx) return;
+    var t0 = actx.currentTime + (delay || 0);
+    var osc = actx.createOscillator();
+    var gain = actx.createGain();
+    osc.type = type || "sine";
+    osc.frequency.setValueAtTime(freq, t0);
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(vol || 0.2, t0 + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(gain);
+    gain.connect(actx.destination);
+    osc.start(t0);
+    osc.stop(t0 + dur + 0.02);
+  }
+  function playSweep(freqStart, freqEnd, dur, type, vol, delay) {
+    if (muted || !iconSoundOn || !actx) return;
+    var t0 = actx.currentTime + (delay || 0);
+    var osc = actx.createOscillator();
+    osc.type = type || "sine";
+    osc.frequency.setValueAtTime(freqStart, t0);
+    osc.frequency.exponentialRampToValueAtTime(Math.max(30, freqEnd), t0 + dur);
+    var gain = actx.createGain();
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(vol, t0 + dur * 0.3);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(gain);
+    gain.connect(actx.destination);
+    osc.start(t0);
+    osc.stop(t0 + dur + 0.02);
+  }
+
+  function sndMagnet() { beepAt(1500, 0.15, "sine", 1, 0); beepAt(950, 0.24, "sine", 1, 0.15); }
+  function sndShield() { beepAt(700, 0.1, "sine", 1, 0); beepAt(950, 0.1, "sine", 1, 0.09); beepAt(1300, 0.2, "sine", 1, 0.18); }
+  function sndCrash() { beep(120, 0.35, "sawtooth", 1); beep(60, 0.4, "square", 1); }
   function sndShieldBreak() { beep(500, 0.15, "square", 0.15); beep(150, 0.2, "square", 0.15); }
+
+  function playNoiseBurst(dur, vol, filterFreq, filterType) {
+    if (muted || !iconSoundOn || !actx) return;
+    var t0 = actx.currentTime;
+    var bufferSize = Math.max(1, Math.floor(actx.sampleRate * dur));
+    var buffer = actx.createBuffer(1, bufferSize, actx.sampleRate);
+    var data = buffer.getChannelData(0);
+    for (var i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+    }
+    var noise = actx.createBufferSource();
+    noise.buffer = buffer;
+    var filter = actx.createBiquadFilter();
+    filter.type = filterType || "bandpass";
+    filter.frequency.value = filterFreq || 3500;
+    filter.Q.value = 0.9;
+    var gain = actx.createGain();
+    gain.gain.setValueAtTime(vol, t0);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(actx.destination);
+    noise.start(t0);
+    noise.stop(t0 + dur + 0.02);
+  }
+
+  var engineNodes = null;
+  function startEngineSound() {
+    if (muted || !rocketSoundOn || !actx || engineNodes) return;
+    var t0 = actx.currentTime;
+
+    if (selectedShip === "helicopter") {
+      // helicopter: low tone chopped by a fast tremolo (rotor blade "wap-wap")
+      var hOsc = actx.createOscillator();
+      hOsc.type = "sawtooth";
+      hOsc.frequency.setValueAtTime(95, t0);
+      var hFilter = actx.createBiquadFilter();
+      hFilter.type = "lowpass";
+      hFilter.frequency.setValueAtTime(480, t0);
+      var hGain = actx.createGain();
+      hGain.gain.setValueAtTime(0.0001, t0);
+      hGain.gain.exponentialRampToValueAtTime(0.45, t0 + 0.2);
+      var hChop = actx.createOscillator();
+      hChop.type = "square";
+      hChop.frequency.setValueAtTime(10, t0);
+      var hChopGain = actx.createGain();
+      hChopGain.gain.setValueAtTime(0.4, t0);
+      hChop.connect(hChopGain);
+      hChopGain.connect(hGain.gain);
+      hOsc.connect(hFilter);
+      hFilter.connect(hGain);
+      hGain.connect(actx.destination);
+      hOsc.start(t0);
+      hChop.start(t0);
+      engineNodes = { osc1: hOsc, osc2: hChop, lfo: null, gain: hGain };
+      return;
+    }
+
+    if (selectedShip === "jet") {
+      // jet: higher-pitched turbine whine, two slightly detuned tones for shimmer
+      var jOsc1 = actx.createOscillator();
+      jOsc1.type = "sawtooth";
+      jOsc1.frequency.setValueAtTime(300, t0);
+      var jOsc2 = actx.createOscillator();
+      jOsc2.type = "sawtooth";
+      jOsc2.frequency.setValueAtTime(308, t0);
+      var jFilter = actx.createBiquadFilter();
+      jFilter.type = "highpass";
+      jFilter.frequency.setValueAtTime(180, t0);
+      var jGain = actx.createGain();
+      jGain.gain.setValueAtTime(0.0001, t0);
+      jGain.gain.exponentialRampToValueAtTime(0.15, t0 + 0.2);
+      jOsc1.connect(jFilter);
+      jOsc2.connect(jFilter);
+      jFilter.connect(jGain);
+      jGain.connect(actx.destination);
+      jOsc1.start(t0);
+      jOsc2.start(t0);
+      engineNodes = { osc1: jOsc1, osc2: jOsc2, lfo: null, gain: jGain };
+      return;
+    }
+
+    // rocket: low sawtooth+square rumble with subtle flutter
+    var osc1 = actx.createOscillator();
+    osc1.type = "sawtooth";
+    osc1.frequency.setValueAtTime(68, t0);
+    var osc2 = actx.createOscillator();
+    osc2.type = "square";
+    osc2.frequency.setValueAtTime(136, t0);
+    var filter = actx.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.setValueAtTime(420, t0);
+    var gain = actx.createGain();
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(0.5, t0 + 0.2);
+    var lfo = actx.createOscillator();
+    lfo.type = "sine";
+    lfo.frequency.setValueAtTime(9, t0);
+    var lfoGain = actx.createGain();
+    lfoGain.gain.setValueAtTime(0.03, t0);
+    lfo.connect(lfoGain);
+    lfoGain.connect(gain.gain);
+    osc1.connect(filter);
+    osc2.connect(filter);
+    filter.connect(gain);
+    gain.connect(actx.destination);
+    osc1.start(t0);
+    osc2.start(t0);
+    lfo.start(t0);
+    engineNodes = { osc1: osc1, osc2: osc2, lfo: lfo, gain: gain };
+  }
+  function stopEngineSound() {
+    if (!engineNodes || !actx) { engineNodes = null; return; }
+    var t0 = actx.currentTime;
+    try {
+      engineNodes.gain.gain.cancelScheduledValues(t0);
+      engineNodes.gain.gain.setValueAtTime(engineNodes.gain.gain.value, t0);
+      engineNodes.gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.15);
+      if (engineNodes.osc1) engineNodes.osc1.stop(t0 + 0.2);
+      if (engineNodes.osc2) engineNodes.osc2.stop(t0 + 0.2);
+      if (engineNodes.lfo) engineNodes.lfo.stop(t0 + 0.2);
+    } catch (e) {}
+    engineNodes = null;
+  }
 
   /* ============================================================
      SKETCH DRAW HELPERS (hand-drawn wobble effect)
@@ -530,8 +944,10 @@
   var shieldActive;
   var wallMargin;
   var lastTime = 0;
-  var touchDir = 0; // -1 left, 0 none, 1 right
+  var isPressed = false;     // true while the finger/mouse is down
+  var hasInteracted = false; // becomes true after the very first touch, so the rocket never drifts on its own before that
   var flameFlicker = 0;
+  var heliRotorAngle = 0;
   var timeElapsed = 0;
   var settingsOpen = false;
 
@@ -545,17 +961,18 @@
   var gameOverPopup = document.getElementById("gameOverPopup");
   var finalDistEl = document.getElementById("finalDist");
   var finalCoinsEl = document.getElementById("finalCoins");
-  var bestDistTextEl = document.getElementById("bestDistText");
-  var bestCoinsTextEl = document.getElementById("bestCoinsText");
-
   var tutorialBanner = document.getElementById("tutorialBanner");
   var arrowLeftEl = document.getElementById("arrowLeft");
   var arrowRightEl = document.getElementById("arrowRight");
   var tutorialSkipBtn = document.getElementById("tutorialSkipBtn");
 
   var settingsBtn = document.getElementById("settingsBtn");
+  var popupSettingsBtn = document.getElementById("popupSettingsBtn");
   var settingsPanel = document.getElementById("settingsPanel");
   var soundToggleBtn = document.getElementById("soundToggleBtn");
+  var rocketSoundToggleBtn = document.getElementById("rocketSoundToggleBtn");
+  var iconSoundToggleBtn = document.getElementById("iconSoundToggleBtn");
+  var vibrationToggleBtn = document.getElementById("vibrationToggleBtn");
   var closeSettingsBtn = document.getElementById("closeSettingsBtn");
   var deleteDataBtn = document.getElementById("deleteDataBtn");
   var setBestDist = document.getElementById("setBestDist");
@@ -583,6 +1000,28 @@
     } catch (e) { /* localStorage unavailable, ignore */ }
   }
 
+  /* ---- rocket sound / icon sound / vibration toggles (added) ---- */
+  var rocketSoundOn = true;
+  var iconSoundOn = true;
+  var vibrationOn = true;
+  function loadAudioPrefs() {
+    try {
+      rocketSoundOn = localStorage.getItem("rocketGame_rocketSoundOn") !== "0";
+      iconSoundOn = localStorage.getItem("rocketGame_iconSoundOn") !== "0";
+      vibrationOn = localStorage.getItem("rocketGame_vibrationOn") !== "0";
+    } catch (e) { rocketSoundOn = true; iconSoundOn = true; vibrationOn = true; }
+  }
+  function saveAudioPrefs() {
+    try {
+      localStorage.setItem("rocketGame_rocketSoundOn", rocketSoundOn ? "1" : "0");
+      localStorage.setItem("rocketGame_iconSoundOn", iconSoundOn ? "1" : "0");
+      localStorage.setItem("rocketGame_vibrationOn", vibrationOn ? "1" : "0");
+    } catch (e) { /* ignore */ }
+  }
+  function doVibrate(ms) {
+    if (vibrationOn && navigator.vibrate) { try { navigator.vibrate(ms); } catch (e) { /* ignore */ } }
+  }
+
   /* ---- first-time tutorial flag ---- */
   var tutorialSeen = false;
   function loadTutorialFlag() {
@@ -601,6 +1040,9 @@
     setGamesPlayed.textContent = gamesPlayed;
     setCrashCount.textContent = crashCount;
     soundToggleBtn.textContent = muted ? "OFF" : "ON";
+    rocketSoundToggleBtn.textContent = rocketSoundOn ? "ON" : "OFF";
+    iconSoundToggleBtn.textContent = iconSoundOn ? "ON" : "OFF";
+    vibrationToggleBtn.textContent = vibrationOn ? "ON" : "OFF";
   }
 
   function openSettings() {
@@ -615,10 +1057,36 @@
   }
 
   settingsBtn.addEventListener("click", openSettings);
+  if (popupSettingsBtn) popupSettingsBtn.addEventListener("click", openSettings);
   closeSettingsBtn.addEventListener("click", closeSettings);
   soundToggleBtn.addEventListener("click", function () {
     muted = !muted;
     soundToggleBtn.textContent = muted ? "OFF" : "ON";
+    if (muted) {
+      stopEngineSound();
+    } else if (state === STATE_PLAYING || state === STATE_TUTORIAL) {
+      startEngineSound();
+    }
+  });
+  rocketSoundToggleBtn.addEventListener("click", function () {
+    rocketSoundOn = !rocketSoundOn;
+    rocketSoundToggleBtn.textContent = rocketSoundOn ? "ON" : "OFF";
+    saveAudioPrefs();
+    if (!rocketSoundOn) {
+      stopEngineSound();
+    } else if (!muted && (state === STATE_PLAYING || state === STATE_TUTORIAL)) {
+      startEngineSound();
+    }
+  });
+  iconSoundToggleBtn.addEventListener("click", function () {
+    iconSoundOn = !iconSoundOn;
+    iconSoundToggleBtn.textContent = iconSoundOn ? "ON" : "OFF";
+    saveAudioPrefs();
+  });
+  vibrationToggleBtn.addEventListener("click", function () {
+    vibrationOn = !vibrationOn;
+    vibrationToggleBtn.textContent = vibrationOn ? "ON" : "OFF";
+    saveAudioPrefs();
   });
   deleteDataBtn.addEventListener("click", function () {
     var ok = window.confirm("Delete all saved data? Best scores, games played, crash count and the tutorial progress will be reset.");
@@ -683,7 +1151,7 @@
         taken: false
       });
     }
-    showTutorialBanner("Line up under the magnet to grab it!");
+    showTutorialBanner("Drag your finger to line up under the magnet!");
   }
 
   function spawnTutorialShield() {
@@ -693,7 +1161,7 @@
     items.push(s);
     tutorialTarget = s;
     tutorialUnfrozen = false;
-    showTutorialBanner("Line up under the shield to grab it!");
+    showTutorialBanner("Drag your finger to line up under the shield!");
   }
 
   function spawnTutorialTestSpike() {
@@ -730,12 +1198,21 @@
     updateRocket(dt);
     updateItems(dt);
     flameFlicker += dt * 20;
+    heliRotorAngle += dt * 26;
+    updateBgTemplate(dt);
     tutorialPhaseTimer += dt;
 
     if (tutorialPhase === "move") {
-      var cycle = Math.floor(tutorialPhaseTimer / 0.9) % 2;
-      setArrowBlink(cycle === 0 ? "left" : "right");
-      if (tutorialPhaseTimer > 3.2) {
+      if (!hasInteracted) {
+        hideArrows();
+        showTutorialBanner("Touch and DRAG anywhere — the rocket follows your finger!");
+      } else {
+        var driftDx = (pointerX !== null) ? pointerX - rocket.x : 0;
+        if (Math.abs(driftDx) < 10) hideArrows();
+        else setArrowBlink(driftDx < 0 ? "left" : "right");
+        showTutorialBanner("Nice! Keep dragging left and right to steer.");
+      }
+      if (tutorialPhaseTimer > 4.5 && hasInteracted) {
         tutorialPhase = "magnet";
         tutorialPhaseTimer = 0;
         spawnTutorialMagnet();
@@ -800,7 +1277,8 @@
     tutorialUnfrozen = false;
     gameSpeed = baseSpeed * TUTORIAL_SPEED_MULT;
     tutorialSkipBtn.style.display = "block";
-    showTutorialBanner("Touch LEFT or RIGHT side to steer your rocket!");
+    showTutorialBanner("Touch and DRAG anywhere — the rocket follows your finger!");
+    startEngineSound();
   }
 
   function finishTutorial() {
@@ -836,7 +1314,7 @@
     wallMargin = W * 0.05;
     rocket = {
       x: W / 2,
-      y: H * 0.58,
+      y: H * 0.72,
       vx: 0,
       width: Math.max(30, W * 0.09),
       height: 0,
@@ -861,51 +1339,78 @@
     shieldActive = false;
     lastTime = 0;
     flameFlicker = 0;
-    touchDir = 0;
+    isPressed = false;
+    hasInteracted = false;
+    pointerX = null;
+    dragStartX = null;
+    dragRocketStartX = 0;
+    resetAlienSystem();
     updateHUD();
   }
 
   /* ============================================================
-     INPUT — touch left/right halves only, no buttons/joystick
+     INPUT — relative drag control: touching the screen does NOT
+     snap the rocket to your finger. Wherever the rocket already is,
+     it stays there when you touch down — only the AMOUNT you then
+     drag your finger left/right moves the rocket by that same
+     amount. Nothing moves until you actually drag.
      ============================================================ */
-  function setDirFromX(clientX) {
-    touchDir = clientX < W / 2 ? -1 : 1;
-  }
-  function clearDir() { touchDir = 0; }
+  var pointerX = null;       // target x the rocket eases toward (updated only during an active drag)
+  var dragStartX = null;     // finger x position at the moment the drag began
+  var dragRocketStartX = 0;  // rocket x position at the moment the drag began
 
   function isControllable() {
     return (state === STATE_PLAYING || state === STATE_TUTORIAL) && !settingsOpen;
   }
 
-  function onPointerDown(e) {
-    ensureAudio();
-    if (!isControllable()) return;
-    var x = e.touches ? e.touches[0].clientX : e.clientX;
-    setDirFromX(x);
+  function getEventX(e) {
+    return e.touches && e.touches.length ? e.touches[0].clientX : e.clientX;
   }
-  function onPointerMove(e) {
-    if (touchDir === 0 || !isControllable()) return;
-    var x = e.touches ? e.touches[0].clientX : e.clientX;
-    setDirFromX(x);
-  }
-  function onPointerUp() { clearDir(); }
 
-  canvas.addEventListener("touchstart", onPointerDown, { passive: true });
-  canvas.addEventListener("touchmove", onPointerMove, { passive: true });
-  canvas.addEventListener("touchend", onPointerUp);
-  canvas.addEventListener("touchcancel", onPointerUp);
-  canvas.addEventListener("mousedown", onPointerDown);
-  canvas.addEventListener("mousemove", onPointerMove);
-  window.addEventListener("mouseup", onPointerUp);
+  function onPressStart(e) {
+    ensureAudio();
+    if (e.cancelable) e.preventDefault();
+    if (!isControllable()) return;
+    isPressed = true;
+    hasInteracted = true;
+    dragStartX = getEventX(e);
+    dragRocketStartX = rocket.x;
+    pointerX = rocket.x; // no jump on touch-down — target starts exactly where the rocket already is
+  }
+  function onPressMove(e) {
+    if (!isPressed || !isControllable() || dragStartX === null) return;
+    if (e.cancelable) e.preventDefault();
+    var curX = getEventX(e);
+    pointerX = dragRocketStartX + (curX - dragStartX); // move by the drag DELTA, not to the raw finger position
+  }
+  function onPressEnd() {
+    isPressed = false;
+    dragStartX = null;
+  }
+
+  // Attach only ONE input path per device type: touch devices get touch
+  // events only, everything else gets mouse events only. This avoids
+  // WebViews that fire both a real touchstart AND a synthetic mousedown
+  // for the same physical touch, which would otherwise desync press state.
+  var supportsTouch = ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
+  if (supportsTouch) {
+    canvas.addEventListener("touchstart", onPressStart, { passive: false });
+    canvas.addEventListener("touchmove", onPressMove, { passive: false });
+    canvas.addEventListener("touchend", onPressEnd, { passive: true });
+    canvas.addEventListener("touchcancel", onPressEnd, { passive: true });
+  } else {
+    canvas.addEventListener("mousedown", onPressStart);
+    window.addEventListener("mousemove", onPressMove);
+    window.addEventListener("mouseup", onPressEnd);
+  }
 
   window.addEventListener("keydown", function (e) {
     if (!isControllable()) return;
-    if (e.key === "ArrowLeft") touchDir = -1;
-    if (e.key === "ArrowRight") touchDir = 1;
+    if (e.key === "ArrowLeft") { isPressed = true; hasInteracted = true; pointerX = rocket.x - W * 0.02; }
+    if (e.key === "ArrowRight") { isPressed = true; hasInteracted = true; pointerX = rocket.x + W * 0.02; }
   });
   window.addEventListener("keyup", function (e) {
-    if (e.key === "ArrowLeft" && touchDir === -1) touchDir = 0;
-    if (e.key === "ArrowRight" && touchDir === 1) touchDir = 0;
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") isPressed = false;
   });
 
   /* ============================================================
@@ -996,22 +1501,1398 @@
   }
 
   /* ============================================================
+     ALIEN SYSTEM (added) — 3 alien types (1/2/3-shot shooters),
+     rocket auto-fire, and left/right red warning lights.
+     Nothing above/below this block was changed.
+     ============================================================ */
+  var ALIEN_TYPES = [
+    { bullets: 1, fireMin: 0.55, fireMax: 0.9, speedMult: 1.0 },
+    { bullets: 2, fireMin: 0.65, fireMax: 1.0, speedMult: 0.9 },
+    { bullets: 3, fireMin: 0.75, fireMax: 1.15, speedMult: 0.8 }
+  ];
+  var MAX_ALIENS_ON_SCREEN = 2;
+  var ROCKET_FIRE_INTERVAL = 0.4;
+
+  var aliens = [];
+  var rocketBullets = [];
+  var alienBullets = [];
+  var alienSpawnTimer = 8;
+  var alienSpawnInterval = 9;
+  var rocketFireTimer = 0;
+
+  var alienWarnLeftEl = document.getElementById("alienWarnLeft");
+  var alienWarnRightEl = document.getElementById("alienWarnRight");
+
+  function sndAlienDestroy() {
+    playNoiseBurst(0.22, 1, 4200, "bandpass");
+    playNoiseBurst(0.14, 0.9, 7000, "highpass");
+    beep(2600, 0.05, "sine", 1);
+    beep(3400, 0.04, "sine", 0.85);
+    beep(2000, 0.06, "sine", 0.8);
+    beep(1500, 0.08, "sine", 0.6);
+  }
+  function sndDiamond() { beep(1500, 0.08, "sine", 1); beep(1900, 0.1, "sine", 1); }
+  function sndAlienShoot() { beep(220, 0.06, "sawtooth", 1); }
+  function sndRocketShoot() { playSweep(1900, 500, 0.09, "sawtooth", 1, 0); playNoiseBurst(0.035, 0.8, 3200, "highpass"); }
+
+  function resetAlienSystem() {
+    aliens = [];
+    rocketBullets = [];
+    alienBullets = [];
+    alienSpawnTimer = rand(5, 8);
+    alienSpawnInterval = rand(8, 13);
+    rocketFireTimer = 0;
+    if (alienWarnLeftEl) alienWarnLeftEl.classList.remove("alien-blink");
+    if (alienWarnRightEl) alienWarnRightEl.classList.remove("alien-blink");
+  }
+
+  function getMaxAliensOnScreen() {
+    return clamp(2 + Math.floor(distance / 900), 2, 10);
+  }
+
+  function spawnAlien() {
+    if (aliens.length >= getMaxAliensOnScreen()) return;
+    var cfg = ALIEN_TYPES[Math.floor(rand(0, 3))];
+    var r = Math.max(20, W * 0.06);
+    aliens.push({
+      x: rand(wallMargin + r + 10, W - wallMargin - r - 10),
+      y: -r * 2,
+      r: r,
+      vy: gameSpeed * 0.4 * cfg.speedMult,
+      bulletCount: cfg.bullets,
+      fireMin: cfg.fireMin,
+      fireMax: cfg.fireMax,
+      fireTimer: rand(0.12, 0.3),
+      spin: rand(0, Math.PI * 2),
+      shakeTimer: 0
+    });
+  }
+
+  function fireAlienBullets(a) {
+    var n = a.bulletCount;
+    var speed = W * 0.85;
+    var spread = 0.32;
+    a.shakeTimer = 0.28;
+    for (var i = 0; i < n; i++) {
+      var ang = Math.PI / 2;
+      if (n > 1) ang += (i - (n - 1) / 2) * spread;
+      alienBullets.push({
+        x: a.x,
+        y: a.y + a.r * 0.4,
+        vx: Math.cos(ang) * speed,
+        vy: Math.sin(ang) * speed,
+        r: Math.max(5, W * 0.014),
+        age: 0
+      });
+    }
+    sndAlienShoot();
+  }
+
+  function fireRocketBullet() {
+    rocketBullets.push({
+      x: rocket.x,
+      y: rocket.y - rocket.height * 0.5,
+      r: Math.max(4, W * 0.01),
+      vy: -W * 1.6
+    });
+    sndRocketShoot();
+  }
+
+  function updateAliens(dt) {
+    alienSpawnTimer -= dt;
+    if (alienSpawnTimer <= 0) {
+      spawnAlien();
+      alienSpawnInterval = clamp(rand(5, 9) - distance / 1400, 0.6, 9);
+      alienSpawnTimer = alienSpawnInterval;
+    }
+    var rocketR = rocket.width * 0.4;
+    for (var i = aliens.length - 1; i >= 0; i--) {
+      var a = aliens[i];
+      a.y += a.vy * dt;
+      a.spin += dt * 1.8;
+      if (a.shakeTimer > 0) a.shakeTimer = Math.max(0, a.shakeTimer - dt);
+      a.fireTimer -= dt;
+      if (a.fireTimer <= 0) {
+        fireAlienBullets(a);
+        a.fireTimer = rand(a.fireMin, a.fireMax);
+      }
+      var dd = Math.sqrt(dist2(a.x, a.y, rocket.x, rocket.y));
+      if (dd < rocketR + a.r * 0.8) {
+        aliens.splice(i, 1);
+        if (shieldActive) {
+          shieldActive = false;
+          sndShieldBreak();
+          spawnParticles(a.x, a.y, 10);
+        } else {
+          spawnParticles(a.x, a.y, 10);
+          crash();
+          return;
+        }
+        continue;
+      }
+      if (a.y - a.r > H + 80) aliens.splice(i, 1);
+    }
+  }
+
+  function updateRocketBullets(dt) {
+    if (aliens.length > 0) {
+      rocketFireTimer -= dt;
+      if (rocketFireTimer <= 0) {
+        fireRocketBullet();
+        rocketFireTimer = ROCKET_FIRE_INTERVAL;
+      }
+    } else {
+      rocketFireTimer = 0;
+    }
+    for (var i = rocketBullets.length - 1; i >= 0; i--) {
+      var b = rocketBullets[i];
+      b.y += b.vy * dt;
+      var hit = false;
+      for (var j = aliens.length - 1; j >= 0; j--) {
+        var a = aliens[j];
+        var dd = Math.sqrt(dist2(b.x, b.y, a.x, a.y));
+        if (dd < a.r + b.r) {
+          spawnParticles(a.x, a.y, 10);
+          sndAlienDestroy();
+          items.push({
+            type: "diamond",
+            x: a.x, y: a.y,
+            r: Math.max(11, W * 0.03),
+            spin: rand(0, Math.PI * 2),
+            taken: false
+          });
+          aliens.splice(j, 1);
+          hit = true;
+          break;
+        }
+      }
+      if (hit || b.y < -60) rocketBullets.splice(i, 1);
+    }
+  }
+
+  function updateAlienBullets(dt) {
+    var rocketR = rocket.width * 0.4;
+    for (var i = alienBullets.length - 1; i >= 0; i--) {
+      var b = alienBullets[i];
+      b.x += b.vx * dt;
+      b.y += b.vy * dt;
+      b.age += dt;
+      var dd = Math.sqrt(dist2(b.x, b.y, rocket.x, rocket.y));
+      if (dd < rocketR * 0.85 + b.r) {
+        alienBullets.splice(i, 1);
+        if (shieldActive) {
+          shieldActive = false;
+          sndShieldBreak();
+          spawnParticles(b.x, b.y, 8);
+        } else {
+          crash();
+          return;
+        }
+        continue;
+      }
+      if (b.y > H + 60 || b.y < -60 || b.x < -60 || b.x > W + 60) alienBullets.splice(i, 1);
+    }
+  }
+
+  function updateAlienWarningLights() {
+    var active = (state === STATE_PLAYING) && aliens.length > 0;
+    if (alienWarnLeftEl) alienWarnLeftEl.classList.toggle("alien-blink", active);
+    if (alienWarnRightEl) alienWarnRightEl.classList.toggle("alien-blink", active);
+  }
+
+  function drawAlien(a) {
+    ctx.save();
+    ctx.translate(a.x, a.y);
+    var r = a.r;
+
+    /* ---- lower hull shadow (3D teal) ---- */
+    var hullGrad = ctx.createLinearGradient(0, r * 0.08, 0, r * 0.55);
+    hullGrad.addColorStop(0, "#8fe3da");
+    hullGrad.addColorStop(0.55, "#2bb5ad");
+    hullGrad.addColorStop(1, "#127e78");
+    ctx.beginPath();
+    ctx.ellipse(0, r * 0.28, r * 0.62, r * 0.24, 0, 0, Math.PI * 2);
+    ctx.fillStyle = hullGrad;
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#0d5a54";
+    ctx.stroke();
+
+    /* ---- saucer rim (wide teal ellipse, 3D shaded) ---- */
+    var rimGrad = ctx.createLinearGradient(0, -r * 0.08, 0, r * 0.35);
+    rimGrad.addColorStop(0, "#c6f6ef");
+    rimGrad.addColorStop(0.45, "#3fc9c0");
+    rimGrad.addColorStop(1, "#15928a");
+    ctx.beginPath();
+    ctx.ellipse(0, r * 0.05, r, r * 0.32, 0, 0, Math.PI * 2);
+    ctx.fillStyle = rimGrad;
+    ctx.fill();
+    ctx.lineWidth = 2.2;
+    ctx.strokeStyle = "#0d5a54";
+    ctx.stroke();
+
+    /* ---- rotating porthole lights (spin animation) ---- */
+    var dotCount = 8;
+    for (var k = 0; k < dotCount; k++) {
+      var ang = a.spin + (k / dotCount) * Math.PI * 2;
+      var dx = Math.cos(ang) * r * 0.86;
+      var depthT = (Math.sin(ang) + 1) / 2;
+      var dy = r * 0.05 + Math.sin(ang) * r * 0.26 * (0.4 + depthT * 0.6);
+      var dotR = r * (0.07 + depthT * 0.04);
+      var dotGrad = ctx.createRadialGradient(dx - dotR * 0.3, dy - dotR * 0.3, dotR * 0.1, dx, dy, dotR);
+      dotGrad.addColorStop(0, "#fff6cf");
+      dotGrad.addColorStop(0.5, "#ffc93c");
+      dotGrad.addColorStop(1, "#c97a00");
+      ctx.beginPath();
+      ctx.arc(dx, dy, dotR, 0, Math.PI * 2);
+      ctx.fillStyle = dotGrad;
+      ctx.fill();
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = "#7a4b00";
+      ctx.stroke();
+    }
+
+    /* ---- dome (silver/grey, 3D gradient) ---- */
+    ctx.save();
+    ctx.beginPath();
+    ctx.ellipse(0, -r * 0.18, r * 0.62, r * 0.6, 0, Math.PI, 0, false);
+    ctx.closePath();
+    ctx.clip();
+    var domeGrad = ctx.createRadialGradient(-r * 0.2, -r * 0.5, r * 0.05, 0, -r * 0.18, r * 0.68);
+    domeGrad.addColorStop(0, "#ffffff");
+    domeGrad.addColorStop(0.45, "#dfe4ea");
+    domeGrad.addColorStop(1, "#a3abb5");
+    ctx.fillStyle = domeGrad;
+    ctx.fillRect(-r, -r * 1.3, r * 2, r * 1.3);
+    ctx.restore();
+    ctx.beginPath();
+    ctx.ellipse(0, -r * 0.18, r * 0.62, r * 0.6, 0, Math.PI, 0, false);
+    ctx.lineWidth = 2.2;
+    ctx.strokeStyle = "#5b6570";
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.ellipse(-r * 0.22, -r * 0.42, r * 0.13, r * 0.2, -0.4, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.fill();
+
+    /* ---- alien head (purple, 3D gradient, big round eyes) ---- */
+    var headGrad = ctx.createRadialGradient(-r * 0.1, -r * 0.45, r * 0.05, 0, -r * 0.3, r * 0.45);
+    headGrad.addColorStop(0, "#d9caf6");
+    headGrad.addColorStop(0.55, "#a48ce0");
+    headGrad.addColorStop(1, "#7b5cc4");
+    ctx.beginPath();
+    ctx.moveTo(-r * 0.28, -r * 0.02);
+    ctx.quadraticCurveTo(-r * 0.4, -r * 0.55, 0, -r * 0.62);
+    ctx.quadraticCurveTo(r * 0.4, -r * 0.55, r * 0.28, -r * 0.02);
+    ctx.quadraticCurveTo(r * 0.16, r * 0.12, 0, r * 0.12);
+    ctx.quadraticCurveTo(-r * 0.16, r * 0.12, -r * 0.28, -r * 0.02);
+    ctx.closePath();
+    ctx.fillStyle = headGrad;
+    ctx.fill();
+    ctx.lineWidth = 1.6;
+    ctx.strokeStyle = "#5a3f9c";
+    ctx.stroke();
+
+    ctx.fillStyle = "#141018";
+    ctx.beginPath();
+    ctx.ellipse(-r * 0.13, -r * 0.28, r * 0.1, r * 0.145, -0.15, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(r * 0.13, -r * 0.28, r * 0.1, r * 0.145, 0.15, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.beginPath();
+    ctx.ellipse(-r * 0.16, -r * 0.33, r * 0.025, r * 0.04, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(r * 0.1, -r * 0.33, r * 0.025, r * 0.04, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* ---- arms on controls ---- */
+    ctx.strokeStyle = "#7b5cc4";
+    ctx.lineWidth = r * 0.09;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(-r * 0.24, r * 0.05);
+    ctx.lineTo(-r * 0.06, -r * 0.02);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(r * 0.24, r * 0.05);
+    ctx.lineTo(r * 0.06, -r * 0.02);
+    ctx.stroke();
+    ctx.fillStyle = "#5a3f9c";
+    ctx.beginPath();
+    ctx.arc(-r * 0.06, -r * 0.02, r * 0.045, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(r * 0.06, -r * 0.02, r * 0.045, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* ---- gun barrels (3D pipes, shake/wobble when firing) ---- */
+    var shakeAmt = a.shakeTimer > 0 ? (a.shakeTimer / 0.28) : 0;
+    for (var bIdx = 0; bIdx < a.bulletCount; bIdx++) {
+      var bx = (bIdx - (a.bulletCount - 1) / 2) * r * 0.5;
+      var jitter = shakeAmt > 0 ? (Math.sin((bIdx + 1) * a.shakeTimer * 90) * shakeAmt * r * 0.06) : 0;
+      ctx.save();
+      ctx.translate(jitter, shakeAmt * r * 0.05);
+      var barrelGrad = ctx.createLinearGradient(bx - 3.4, 0, bx + 3.4, 0);
+      barrelGrad.addColorStop(0, "#4a4a4a");
+      barrelGrad.addColorStop(0.5, "#cfcfcf");
+      barrelGrad.addColorStop(1, "#3a3a3a");
+      ctx.beginPath();
+      ctx.rect(bx - 3.4, r * 0.34, 6.8, r * 0.22);
+      ctx.fillStyle = barrelGrad;
+      ctx.fill();
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = "#222";
+      ctx.stroke();
+      if (shakeAmt > 0) {
+        ctx.beginPath();
+        ctx.arc(bx, r * 0.34 + r * 0.22, 3 + shakeAmt * 3, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,110,30," + (0.6 * shakeAmt) + ")";
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+
+  function drawRocketBullet(b) {
+    ctx.save();
+    var bulletGrad = ctx.createRadialGradient(b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.1, b.x, b.y, b.r * 1.4);
+    bulletGrad.addColorStop(0, "#d9ffcf");
+    bulletGrad.addColorStop(0.5, "#3ee62f");
+    bulletGrad.addColorStop(1, "#0e8a0a");
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+    ctx.fillStyle = bulletGrad;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawAlienBullet(b) {
+    ctx.save();
+    var flick = 0.75 + 0.25 * Math.sin(b.age * 40 + b.x);
+    var outerR = b.r * 1.7 * flick;
+    var glowGrad = ctx.createRadialGradient(b.x, b.y, b.r * 0.1, b.x, b.y, outerR);
+    glowGrad.addColorStop(0, "#fff6c8");
+    glowGrad.addColorStop(0.28, "#ffd23c");
+    glowGrad.addColorStop(0.6, "#ff7a1a");
+    glowGrad.addColorStop(1, "rgba(255,40,0,0)");
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, outerR, 0, Math.PI * 2);
+    ctx.fillStyle = glowGrad;
+    ctx.fill();
+
+    ctx.save();
+    ctx.translate(b.x, b.y);
+    ctx.rotate(Math.atan2(b.vy, b.vx) + Math.PI / 2);
+    var tongue = b.r * (1.1 + 0.35 * Math.sin(b.age * 50));
+    ctx.beginPath();
+    ctx.moveTo(-b.r * 0.55, b.r * 0.3);
+    ctx.quadraticCurveTo(-b.r * 0.15, -tongue, 0, -tongue * 0.6);
+    ctx.quadraticCurveTo(b.r * 0.15, -tongue, b.r * 0.55, b.r * 0.3);
+    ctx.closePath();
+    ctx.fillStyle = "#ff3d12";
+    ctx.globalAlpha = 0.9;
+    ctx.fill();
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.r * 0.6, 0, Math.PI * 2);
+    ctx.fillStyle = "#fff3b0";
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawAliens() {
+    for (var i = 0; i < aliens.length; i++) drawAlien(aliens[i]);
+  }
+  function drawRocketBulletsAll() {
+    for (var i = 0; i < rocketBullets.length; i++) drawRocketBullet(rocketBullets[i]);
+  }
+  function drawAlienBulletsAll() {
+    for (var i = 0; i < alienBullets.length; i++) drawAlienBullet(alienBullets[i]);
+  }
+
+  /* ============================================================
+     TEST ADMOB HOOK (added)
+     AdMob itself is a native SDK — it cannot run inside a plain
+     HTML page. This calls a native WebView bridge if the app
+     wrapper provides one (window.DSAds.showInterstitial), using
+     Google's public AdMob TEST interstitial unit ID. If no
+     native bridge is present (e.g. testing in a browser), it
+     shows an in-page placeholder so ad-trigger timing can still
+     be verified before wiring up the real native SDK.
+     ============================================================ */
+  var AD_TEST_INTERSTITIAL_ID = "ca-app-pub-3940256099942544/1033173712";
+  var testAdOverlay = document.getElementById("testAdOverlay");
+  var testAdReasonEl = document.getElementById("testAdReason");
+  var testAdCountdownEl = document.getElementById("testAdCountdown");
+  var adOverlayTimer = null;
+
+  function showInterstitialAd(reason) {
+    try {
+      if (window.DSAds && typeof window.DSAds.showInterstitial === "function") {
+        window.DSAds.showInterstitial(AD_TEST_INTERSTITIAL_ID, reason || "");
+        return;
+      }
+    } catch (e) { /* ignore, fall through to placeholder */ }
+    showFallbackAdOverlay(reason);
+  }
+
+  function showFallbackAdOverlay(reason) {
+    if (!testAdOverlay) return;
+    if (adOverlayTimer) { clearInterval(adOverlayTimer); adOverlayTimer = null; }
+    if (testAdReasonEl) testAdReasonEl.textContent = reason ? ("Triggered by: " + reason) : "";
+    var count = 3;
+    if (testAdCountdownEl) testAdCountdownEl.textContent = count;
+    testAdOverlay.style.display = "flex";
+    adOverlayTimer = setInterval(function () {
+      count--;
+      if (testAdCountdownEl) testAdCountdownEl.textContent = Math.max(0, count);
+      if (count <= 0) {
+        clearInterval(adOverlayTimer);
+        adOverlayTimer = null;
+        testAdOverlay.style.display = "none";
+      }
+    }, 1000);
+  }
+
+  /* ============================================================
+     SHIP SHOP (added) — diamonds currency, unlockable ships
+     (Rocket / Helicopter / Jet), each with independently
+     colorable parts.
+     ============================================================ */
+  var DIAMOND_ICON_SVG = '<svg class="diamond-ico" viewBox="-20 -22 40 44" width="12" height="13"><polygon points="0,-20 14.4,-3 0,20 -14.4,-3" fill="url(#diaGrad)" stroke="#0d6f8c" stroke-width="2"/><line x1="0" y1="-20" x2="0" y2="20" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><line x1="-14.4" y1="-3" x2="14.4" y2="-3" stroke="rgba(255,255,255,0.6)" stroke-width="1"/></svg>';
+  var SHOP_SHIPS = [
+    { id: "rocket", name: "Rocket", cost: 0 },
+    { id: "helicopter", name: "Helicopter", cost: 150 },
+    { id: "jet", name: "Jet", cost: 250 }
+  ];
+  var SHOP_COLORS = ["#ffffff", "#7a2e8c", "#e6189c", "#e8342a", "#f5821f", "#ffd400", "#29abe2", "#7ac142", "#158a4a", "#7b4b25", "#1a1512"];
+
+  var SHIP_PARTS = {
+    rocket: [{ key: "body", label: "Body" }, { key: "fins", label: "Fins" }, { key: "window", label: "Window" }, { key: "flame", label: "Flame" }],
+    helicopter: [{ key: "body", label: "Body" }, { key: "tail", label: "Tail" }],
+    jet: [{ key: "body", label: "Body" }, { key: "wings", label: "Wings" }, { key: "tail", label: "Tail" }, { key: "window", label: "Window" }, { key: "flame", label: "Flame" }]
+  };
+  var DEFAULT_PART_COLORS = {
+    rocket: { body: "#ffffff", fins: "#ffffff", window: "#ffffff", flame: "#ffffff" },
+    helicopter: { body: "#ffffff", tail: "#ffffff" },
+    jet: { body: "#ffffff", wings: "#ffffff", tail: "#ffffff", window: "#eaf6ff", flame: "#ffffff" }
+  };
+
+  var diamonds = 0;
+  var ownedShips = ["rocket"];
+  var shipPartColors = {
+    rocket: { body: "#ffffff", fins: "#ffffff", window: "#ffffff", flame: "#ffffff" },
+    helicopter: { body: "#ffffff", tail: "#ffffff" },
+    jet: { body: "#ffffff", wings: "#ffffff", tail: "#ffffff", window: "#eaf6ff", flame: "#ffffff" }
+  };
+  var selectedShip = "rocket";
+  var shopActivePart = { rocket: "body", helicopter: "body", jet: "body" };
+  var pendingShipColors = {};
+
+  function mergeColors(base, overrides) {
+    var out = {}, k;
+    for (k in base) out[k] = base[k];
+    if (overrides) for (k in overrides) out[k] = overrides[k];
+    return out;
+  }
+
+  function loadShopData() {
+    try {
+      diamonds = parseInt(localStorage.getItem("rocketGame_diamonds") || "0", 10) || 0;
+      var ownedRaw = localStorage.getItem("rocketGame_ownedShips");
+      ownedShips = ownedRaw ? JSON.parse(ownedRaw) : ["rocket"];
+      if (ownedShips.indexOf("rocket") === -1) ownedShips.push("rocket");
+      var colorsRaw = localStorage.getItem("rocketGame_shipPartColors");
+      var parsed = colorsRaw ? JSON.parse(colorsRaw) : null;
+      shipPartColors = {
+        rocket: (parsed && parsed.rocket) || { body: "#ffffff", fins: "#ffffff", window: "#ffffff", flame: "#ffffff" },
+        helicopter: (parsed && parsed.helicopter) || { body: "#ffffff", tail: "#ffffff" },
+        jet: (parsed && parsed.jet) || { body: "#ffffff", wings: "#ffffff", tail: "#ffffff", window: "#eaf6ff", flame: "#ffffff" }
+      };
+      if (!shipPartColors.rocket.flame) shipPartColors.rocket.flame = "#ffffff";
+      if (!shipPartColors.jet.flame) shipPartColors.jet.flame = "#ffffff";
+      if (!shipPartColors.jet.window) shipPartColors.jet.window = "#eaf6ff";
+      selectedShip = localStorage.getItem("rocketGame_selectedShip") || "rocket";
+      if (ownedShips.indexOf(selectedShip) === -1) selectedShip = "rocket";
+    } catch (e) {
+      shipPartColors = {
+        rocket: { body: "#ffffff", fins: "#ffffff", window: "#ffffff", flame: "#ffffff" },
+        helicopter: { body: "#ffffff", tail: "#ffffff" },
+        jet: { body: "#ffffff", wings: "#ffffff", tail: "#ffffff", window: "#eaf6ff", flame: "#ffffff" }
+      };
+    }
+  }
+  function saveShopData() {
+    try {
+      localStorage.setItem("rocketGame_diamonds", String(diamonds));
+      localStorage.setItem("rocketGame_ownedShips", JSON.stringify(ownedShips));
+      localStorage.setItem("rocketGame_shipPartColors", JSON.stringify(shipPartColors));
+      localStorage.setItem("rocketGame_selectedShip", selectedShip);
+    } catch (e) { /* ignore */ }
+  }
+
+  /* ============================================================
+     THEME (added) — UI accent color for the whole game:
+     titles, borders, and clickable/dashboard backgrounds.
+     ============================================================ */
+  var THEME_COLORS = ["#ffffff", "#7a2e8c", "#e6189c", "#e8342a", "#f5821f", "#ffd400", "#29abe2", "#7ac142", "#158a4a", "#7b4b25", "#1a1512"];
+  var themeColor = "#111111";
+
+  function getContrastColor(hex) {
+    hex = (hex || "#111111").replace("#", "");
+    if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    var r = parseInt(hex.substring(0, 2), 16) || 0;
+    var g = parseInt(hex.substring(2, 4), 16) || 0;
+    var b = parseInt(hex.substring(4, 6), 16) || 0;
+    var luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.6 ? "#111111" : "#ffffff";
+  }
+  function applyThemeVars() {
+    document.documentElement.style.setProperty("--theme-c", themeColor);
+    document.documentElement.style.setProperty("--theme-ic", getContrastColor(themeColor));
+  }
+  function loadThemeData() {
+    try {
+      themeColor = localStorage.getItem("rocketGame_themeColor") || "#111111";
+    } catch (e) { themeColor = "#111111"; }
+    applyThemeVars();
+  }
+  function saveThemeData() {
+    try {
+      localStorage.setItem("rocketGame_themeColor", themeColor);
+    } catch (e) { /* ignore */ }
+  }
+  function setThemeColor(col) {
+    themeColor = col;
+    applyThemeVars();
+    saveThemeData();
+  }
+
+  /* ============================================================
+     GRAPHIC (added) — gameplay canvas colors: background,
+     star (spike), coin, magnet, shield
+     ============================================================ */
+  var GRAPHIC_COLORS = ["#ffffff", "#7a2e8c", "#e6189c", "#e8342a", "#f5821f", "#ffd400", "#29abe2", "#7ac142", "#158a4a", "#7b4b25", "#1a1512"];
+  var graphicColors = { bg: "#fdfdfb", star: "#ffffff", coin: "#ffffff", magnet: "#ffffff", shield: "#ffffff" };
+
+  function loadGraphicData() {
+    try {
+      var raw = localStorage.getItem("rocketGame_graphicColors");
+      graphicColors = raw ? JSON.parse(raw) : { bg: "#fdfdfb", star: "#ffffff", coin: "#ffffff", magnet: "#ffffff", shield: "#ffffff" };
+    } catch (e) {
+      graphicColors = { bg: "#fdfdfb", star: "#ffffff", coin: "#ffffff", magnet: "#ffffff", shield: "#ffffff" };
+    }
+  }
+  function saveGraphicData() {
+    try { localStorage.setItem("rocketGame_graphicColors", JSON.stringify(graphicColors)); } catch (e) { /* ignore */ }
+  }
+
+  /* ============================================================
+     BACKGROUND TEMPLATE (added) — 3D-ish animated gameplay
+     backgrounds: starfield, orbiting planets, spiral galaxy.
+     ============================================================ */
+  var BG_TEMPLATES = [
+    { id: "none", label: "Plain", cost: 0 },
+    { id: "stars", label: "Starfield", cost: 100 },
+    { id: "planets", label: "Planets", cost: 200 },
+    { id: "galaxy", label: "Galaxy", cost: 300 }
+  ];
+  var bgTemplate = "none";
+  var ownedTemplates = ["none"];
+  var bgStars = [];
+  var bgPlanets = [];
+  var galaxySpin = 0;
+
+  function loadTemplateData() {
+    try {
+      bgTemplate = localStorage.getItem("rocketGame_bgTemplate") || "none";
+      var ownedRaw = localStorage.getItem("rocketGame_ownedTemplates");
+      ownedTemplates = ownedRaw ? JSON.parse(ownedRaw) : ["none"];
+      if (ownedTemplates.indexOf("none") === -1) ownedTemplates.push("none");
+      if (ownedTemplates.indexOf(bgTemplate) === -1) bgTemplate = "none";
+    } catch (e) { bgTemplate = "none"; ownedTemplates = ["none"]; }
+  }
+  function saveTemplateData() {
+    try {
+      localStorage.setItem("rocketGame_bgTemplate", bgTemplate);
+      localStorage.setItem("rocketGame_ownedTemplates", JSON.stringify(ownedTemplates));
+    } catch (e) { /* ignore */ }
+  }
+  function setBgTemplate(id) {
+    bgTemplate = id;
+    saveTemplateData();
+    seedBgTemplateElements();
+  }
+  function buyBgTemplate(id) {
+    var t = null;
+    for (var i = 0; i < BG_TEMPLATES.length; i++) if (BG_TEMPLATES[i].id === id) t = BG_TEMPLATES[i];
+    if (!t || diamonds < t.cost) return false;
+    diamonds -= t.cost;
+    ownedTemplates.push(id);
+    saveShopData();
+    setBgTemplate(id);
+    return true;
+  }
+
+  function seedBgTemplateElements() {
+    bgStars = [];
+    var starCount = 60;
+    for (var i = 0; i < starCount; i++) {
+      bgStars.push({
+        x: rand(0, W || 400),
+        y: rand(0, H || 700),
+        r: rand(0.7, 2.3),
+        phase: rand(0, Math.PI * 2),
+        speed: rand(1.2, 3)
+      });
+    }
+    var planetDefs = [
+      { r: 12, color: "#b9a26a" },
+      { r: 17, color: "#e6b85c" },
+      { r: 19, color: "#4aa8ef" },
+      { r: 14, color: "#d1603d" },
+      { r: 28, color: "#e3bd8e" },
+      { r: 23, color: "#e8d59a", ring: true },
+      { r: 18, color: "#8fd0e0" },
+      { r: 18, color: "#5f7fe0" }
+    ];
+    bgPlanets = [];
+    for (var j = 0; j < planetDefs.length; j++) {
+      var pd = planetDefs[j];
+      bgPlanets.push({
+        x: rand(pd.r + 12, (W || 400) - pd.r - 12),
+        y: rand(-(H || 700), H || 700),
+        r: pd.r,
+        color: pd.color,
+        ring: !!pd.ring,
+        spin: rand(0, Math.PI * 2),
+        spinSpeed: rand(0.35, 0.75) * (Math.random() < 0.5 ? -1 : 1),
+        driftSpeed: rand(5, 12)
+      });
+    }
+  }
+
+  function updateBgTemplate(dt) {
+    if (bgTemplate === "stars" || bgTemplate === "planets" || bgTemplate === "galaxy") {
+      for (var i = 0; i < bgStars.length; i++) {
+        var s = bgStars[i];
+        s.phase += dt * s.speed;
+        s.y += dt * 10;
+        if (s.y > H + 4) { s.y = -4; s.x = rand(0, W); }
+      }
+    }
+    if (bgTemplate === "planets") {
+      for (var j = 0; j < bgPlanets.length; j++) {
+        var p = bgPlanets[j];
+        p.spin += dt * p.spinSpeed;
+        p.y += dt * p.driftSpeed;
+        if (p.y > H + p.r + 10) { p.y = -p.r - 10; p.x = rand(p.r + 12, W - p.r - 12); }
+      }
+    }
+    if (bgTemplate === "galaxy") galaxySpin += dt * 0.15;
+  }
+
+  function drawBgStarsLayer(w, h, stars) {
+    var grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, "rgba(8,10,38,0.6)");
+    grad.addColorStop(1, "rgba(4,4,18,0.8)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var tw = 0.5 + 0.5 * Math.sin(s.phase);
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r * (0.7 + tw * 0.6), 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,255,255," + (0.35 + tw * 0.6) + ")";
+      ctx.fill();
+    }
+  }
+
+  function drawBgPlanetsLayer(w, h) {
+    drawBgStarsLayer(w, h, bgStars.length ? bgStars.slice(0, Math.ceil(bgStars.length / 2)) : []);
+    for (var j = 0; j < bgPlanets.length; j++) {
+      var p = bgPlanets[j];
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.spin);
+      var pg = ctx.createRadialGradient(-p.r * 0.3, -p.r * 0.3, p.r * 0.1, 0, 0, p.r);
+      pg.addColorStop(0, "#ffffff");
+      pg.addColorStop(0.18, p.color);
+      pg.addColorStop(1, p.color);
+      ctx.beginPath();
+      ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = pg;
+      ctx.fill();
+      if (p.ring) {
+        ctx.strokeStyle = "rgba(230,210,160,0.85)";
+        ctx.lineWidth = Math.max(2, p.r * 0.14);
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.r * 1.7, p.r * 0.5, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+  }
+
+  function drawBgGalaxyLayer(w, h, spin, stars) {
+    var cx = w / 2, cy = h * 0.42;
+    var grad = ctx.createRadialGradient(cx, cy, 4, cx, cy, Math.max(w, h) * 0.75);
+    grad.addColorStop(0, "#231436");
+    grad.addColorStop(1, "#05030d");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(spin || 0);
+    var arms = 3;
+    for (var a = 0; a < arms; a++) {
+      ctx.save();
+      ctx.rotate((a / arms) * Math.PI * 2);
+      ctx.beginPath();
+      for (var t = 0; t <= 1; t += 0.03) {
+        var ang = t * Math.PI * 2.4;
+        var rad = t * Math.max(w, h) * 0.5;
+        var x = Math.cos(ang) * rad;
+        var y = Math.sin(ang) * rad * 0.5;
+        if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = "rgba(180,150,255,0.32)";
+      ctx.lineWidth = Math.max(w, h) * 0.05;
+      ctx.stroke();
+      ctx.restore();
+    }
+    var coreGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, Math.max(w, h) * 0.1);
+    coreGrad.addColorStop(0, "#fff7e0");
+    coreGrad.addColorStop(1, "rgba(255,247,224,0)");
+    ctx.beginPath();
+    ctx.arc(0, 0, Math.max(w, h) * 0.1, 0, Math.PI * 2);
+    ctx.fillStyle = coreGrad;
+    ctx.fill();
+    ctx.restore();
+
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var tw = 0.5 + 0.5 * Math.sin(s.phase);
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r * 0.7, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,255,255," + (0.3 + tw * 0.5) + ")";
+      ctx.fill();
+    }
+  }
+
+  function paintTemplatePreview(id, canvasEl) {
+    var pctx = canvasEl.getContext("2d");
+    var w = canvasEl.width, h = canvasEl.height;
+    pctx.clearRect(0, 0, w, h);
+    withCtx(pctx, function () {
+      if (id === "none") {
+        ctx.fillStyle = graphicColors.bg;
+        ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = "#111";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(1, 1, w - 2, h - 2);
+      } else if (id === "stars") {
+        var stars = [];
+        for (var i = 0; i < 26; i++) stars.push({ x: rand(0, w), y: rand(0, h), r: rand(0.6, 1.8), phase: rand(0, Math.PI * 2) });
+        drawBgStarsLayer(w, h, stars);
+      } else if (id === "planets") {
+        var savedPlanets = bgPlanets;
+        bgPlanets = [
+          { x: w * 0.25, y: h * 0.35, r: 10, color: "#4aa8ef", spin: 0 },
+          { x: w * 0.6, y: h * 0.6, r: 16, color: "#e8d59a", ring: true, spin: 0.4 },
+          { x: w * 0.82, y: h * 0.22, r: 7, color: "#d1603d", spin: 0 }
+        ];
+        drawBgPlanetsLayer(w, h);
+        bgPlanets = savedPlanets;
+      } else if (id === "galaxy") {
+        var stars2 = [];
+        for (var j = 0; j < 14; j++) stars2.push({ x: rand(0, w), y: rand(0, h), r: rand(0.5, 1.5), phase: rand(0, Math.PI * 2) });
+        drawBgGalaxyLayer(w, h, 0.4, stars2);
+      }
+    });
+  }
+
+  function withCtx(tempCtx, drawFn) {
+    var saved = ctx;
+    ctx = tempCtx;
+    try { drawFn(); } finally { ctx = saved; }
+  }
+
+  function paintRocketPreview(w, h, colors) {
+    ctx.fillStyle = colors.body;
+    ctx.strokeStyle = "#111";
+    ctx.lineWidth = 2.2;
+    var body = [
+      [0, -h * 0.5], [w * 0.32, -h * 0.12], [w * 0.34, h * 0.28],
+      [w * 0.2, h * 0.42], [-w * 0.2, h * 0.42], [-w * 0.34, h * 0.28], [-w * 0.32, -h * 0.12]
+    ];
+    ctx.beginPath();
+    ctx.moveTo(body[0][0], body[0][1]);
+    for (var i = 1; i < body.length; i++) ctx.lineTo(body[i][0], body[i][1]);
+    ctx.closePath();
+    ctx.fill();
+    sketchPolygon(body, true, 2);
+    var finL = [[-w * 0.3, h * 0.18], [-w * 0.62, h * 0.46], [-w * 0.18, h * 0.4]];
+    var finR = [[w * 0.3, h * 0.18], [w * 0.62, h * 0.46], [w * 0.18, h * 0.4]];
+    ctx.fillStyle = colors.fins;
+    ctx.beginPath();
+    ctx.moveTo(finL[0][0], finL[0][1]); ctx.lineTo(finL[1][0], finL[1][1]); ctx.lineTo(finL[2][0], finL[2][1]); ctx.closePath();
+    ctx.fill(); sketchPolygon(finL, true, 1);
+    ctx.beginPath();
+    ctx.moveTo(finR[0][0], finR[0][1]); ctx.lineTo(finR[1][0], finR[1][1]); ctx.lineTo(finR[2][0], finR[2][1]); ctx.closePath();
+    ctx.fill(); sketchPolygon(finR, true, 1);
+    ctx.fillStyle = colors.window;
+    sketchCircle(0, -h * 0.05, w * 0.14, 2);
+    ctx.beginPath();
+    ctx.arc(0, -h * 0.05, w * 0.14, 0, Math.PI * 2);
+    ctx.fill();
+    sketchCircle(0, -h * 0.05, w * 0.14, 1);
+
+    // flame (preview, static)
+    var flamePts = [[-w * 0.14, h * 0.42], [0, h * 0.62], [w * 0.14, h * 0.42]];
+    ctx.fillStyle = colors.flame || "#ffffff";
+    ctx.beginPath();
+    ctx.moveTo(flamePts[0][0], flamePts[0][1]);
+    ctx.lineTo(flamePts[1][0], flamePts[1][1]);
+    ctx.lineTo(flamePts[2][0], flamePts[2][1]);
+    ctx.closePath();
+    ctx.fill();
+    sketchPolygon(flamePts, true, 1);
+  }
+
+  function paintHelicopter(w, h, colors, rotorAngle) {
+    ctx.strokeStyle = "#111";
+    ctx.lineWidth = 2.2;
+    var boom = [[-w * 0.07, h * 0.02], [w * 0.07, h * 0.02], [w * 0.05, h * 0.46], [-w * 0.05, h * 0.46]];
+    ctx.fillStyle = colors.tail;
+    ctx.beginPath();
+    ctx.moveTo(boom[0][0], boom[0][1]);
+    for (var i = 1; i < boom.length; i++) ctx.lineTo(boom[i][0], boom[i][1]);
+    ctx.closePath();
+    ctx.fill();
+    sketchPolygon(boom, true, 1);
+    var tailFin = [[w * 0.05, h * 0.4], [w * 0.24, h * 0.3], [w * 0.05, h * 0.48]];
+    ctx.beginPath();
+    ctx.moveTo(tailFin[0][0], tailFin[0][1]); ctx.lineTo(tailFin[1][0], tailFin[1][1]); ctx.lineTo(tailFin[2][0], tailFin[2][1]); ctx.closePath();
+    ctx.fill(); sketchPolygon(tailFin, true, 1);
+    // small tail rotor
+    ctx.save();
+    ctx.translate(w * 0.16, h * 0.42);
+    ctx.rotate((rotorAngle || 0) * 1.6);
+    ctx.strokeStyle = "#111";
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(-w * 0.1, 0);
+    ctx.lineTo(w * 0.1, 0);
+    ctx.stroke();
+    ctx.restore();
+    var body = [
+      [0, -h * 0.42], [w * 0.34, -h * 0.24], [w * 0.36, h * 0.02], [w * 0.18, h * 0.1],
+      [-w * 0.18, h * 0.1], [-w * 0.36, h * 0.02], [-w * 0.34, -h * 0.24]
+    ];
+    ctx.fillStyle = colors.body;
+    ctx.beginPath();
+    ctx.moveTo(body[0][0], body[0][1]);
+    for (var j = 1; j < body.length; j++) ctx.lineTo(body[j][0], body[j][1]);
+    ctx.closePath();
+    ctx.fill();
+    sketchPolygon(body, true, 2);
+
+    // main rotor — spinning blades + motion-blur disc (mounted where the window used to be)
+    var hubX = 0, hubY = -h * 0.16;
+    var bladeLen = w * 0.68;
+    ctx.save();
+    ctx.globalAlpha = 0.16;
+    ctx.fillStyle = "#111";
+    ctx.beginPath();
+    ctx.ellipse(hubX, hubY, bladeLen, bladeLen * 0.15, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    ctx.translate(hubX, hubY);
+    ctx.rotate(rotorAngle || 0);
+    ctx.strokeStyle = "#111";
+    ctx.lineWidth = 2.6;
+    ctx.beginPath();
+    ctx.moveTo(-bladeLen, 0);
+    ctx.lineTo(bladeLen, 0);
+    ctx.stroke();
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, -bladeLen * 0.4);
+    ctx.lineTo(0, bladeLen * 0.4);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.fillStyle = "#111";
+    ctx.beginPath();
+    ctx.arc(hubX, hubY, w * 0.07, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = "#111";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-w * 0.32, h * 0.14); ctx.lineTo(-w * 0.32, h * 0.22);
+    ctx.moveTo(w * 0.32, h * 0.14); ctx.lineTo(w * 0.32, h * 0.22);
+    ctx.moveTo(-w * 0.4, h * 0.22); ctx.lineTo(-w * 0.22, h * 0.22);
+    ctx.moveTo(w * 0.22, h * 0.22); ctx.lineTo(w * 0.4, h * 0.22);
+    ctx.stroke();
+  }
+
+  function paintJet(w, h, colors) {
+    ctx.fillStyle = colors.body;
+    ctx.strokeStyle = "#111";
+    ctx.lineWidth = 2.2;
+    var body = [
+      [0, -h * 0.5], [w * 0.1, -h * 0.22], [w * 0.12, h * 0.3],
+      [w * 0.06, h * 0.44], [-w * 0.06, h * 0.44], [-w * 0.12, h * 0.3], [-w * 0.1, -h * 0.22]
+    ];
+    ctx.beginPath();
+    ctx.moveTo(body[0][0], body[0][1]);
+    for (var i = 1; i < body.length; i++) ctx.lineTo(body[i][0], body[i][1]);
+    ctx.closePath();
+    ctx.fill();
+    sketchPolygon(body, true, 2);
+    var wingL = [[-w * 0.1, -h * 0.02], [-w * 0.62, h * 0.32], [-w * 0.08, h * 0.22]];
+    var wingR = [[w * 0.1, -h * 0.02], [w * 0.62, h * 0.32], [w * 0.08, h * 0.22]];
+    ctx.fillStyle = colors.wings;
+    ctx.beginPath();
+    ctx.moveTo(wingL[0][0], wingL[0][1]); ctx.lineTo(wingL[1][0], wingL[1][1]); ctx.lineTo(wingL[2][0], wingL[2][1]); ctx.closePath();
+    ctx.fill(); sketchPolygon(wingL, true, 1);
+    ctx.beginPath();
+    ctx.moveTo(wingR[0][0], wingR[0][1]); ctx.lineTo(wingR[1][0], wingR[1][1]); ctx.lineTo(wingR[2][0], wingR[2][1]); ctx.closePath();
+    ctx.fill(); sketchPolygon(wingR, true, 1);
+    var tailL = [[-w * 0.05, h * 0.26], [-w * 0.24, h * 0.44], [-w * 0.05, h * 0.44]];
+    var tailR = [[w * 0.05, h * 0.26], [w * 0.24, h * 0.44], [w * 0.05, h * 0.44]];
+    ctx.fillStyle = colors.tail;
+    ctx.beginPath();
+    ctx.moveTo(tailL[0][0], tailL[0][1]); ctx.lineTo(tailL[1][0], tailL[1][1]); ctx.lineTo(tailL[2][0], tailL[2][1]); ctx.closePath();
+    ctx.fill(); sketchPolygon(tailL, true, 1);
+    ctx.beginPath();
+    ctx.moveTo(tailR[0][0], tailR[0][1]); ctx.lineTo(tailR[1][0], tailR[1][1]); ctx.lineTo(tailR[2][0], tailR[2][1]); ctx.closePath();
+    ctx.fill(); sketchPolygon(tailR, true, 1);
+    ctx.fillStyle = colors.window || "#eaf6ff";
+    sketchCircle(0, -h * 0.14, w * 0.1, 2);
+    ctx.beginPath();
+    ctx.ellipse(0, -h * 0.14, w * 0.09, h * 0.14, 0, 0, Math.PI * 2);
+    ctx.fill();
+    sketchCircle(0, -h * 0.14, w * 0.1, 1);
+
+    // flame (preview, static)
+    var flamePts = [[-w * 0.1, h * 0.44], [0, h * 0.62], [w * 0.1, h * 0.44]];
+    ctx.fillStyle = colors.flame || "#ffffff";
+    ctx.beginPath();
+    ctx.moveTo(flamePts[0][0], flamePts[0][1]);
+    ctx.lineTo(flamePts[1][0], flamePts[1][1]);
+    ctx.lineTo(flamePts[2][0], flamePts[2][1]);
+    ctx.closePath();
+    ctx.fill();
+    sketchPolygon(flamePts, true, 1);
+  }
+
+  function drawShieldMagnetRings() {
+    if (shieldActive) {
+      var glowR = rocket.width * 0.85 + Math.sin(flameFlicker * 1.5) * 3;
+      ctx.save();
+      ctx.strokeStyle = "#111";
+      ctx.setLineDash([6, 6]);
+      ctx.lineWidth = 2;
+      ctx.globalAlpha = 0.7 + Math.sin(flameFlicker * 2) * 0.2;
+      ctx.beginPath();
+      ctx.arc(0, 0, glowR, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+    if (magnetActive) {
+      var magR = W * 0.3 + Math.sin(flameFlicker * 1.4) * 5;
+      ctx.save();
+      ctx.strokeStyle = "#111";
+      ctx.setLineDash([4, 9]);
+      ctx.lineWidth = 2;
+      ctx.globalAlpha = 0.55 + Math.sin(flameFlicker * 1.8) * 0.2;
+      ctx.beginPath();
+      ctx.arc(0, 0, magR, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+  }
+
+  function drawHelicopterShip() {
+    ctx.save();
+    ctx.translate(rocket.x, rocket.y);
+    ctx.rotate(rocket.angle);
+    paintHelicopter(rocket.width, rocket.height, shipPartColors.helicopter, heliRotorAngle);
+    drawShieldMagnetRings();
+    ctx.restore();
+  }
+
+  function drawJetShip() {
+    ctx.save();
+    ctx.translate(rocket.x, rocket.y);
+    ctx.rotate(rocket.angle);
+    drawFlame(shipPartColors.jet.flame);
+    paintJet(rocket.width, rocket.height, shipPartColors.jet);
+    drawShieldMagnetRings();
+    ctx.restore();
+  }
+
+  function drawPlayerShip() {
+    if (selectedShip === "helicopter" && ownedShips.indexOf("helicopter") !== -1) drawHelicopterShip();
+    else if (selectedShip === "jet" && ownedShips.indexOf("jet") !== -1) drawJetShip();
+    else drawRocket();
+  }
+
+  function renderShopRocketTab() {
+    var diamondCountText = document.getElementById("diamondCountText");
+    if (diamondCountText) diamondCountText.textContent = diamonds;
+    var container = document.getElementById("shopTabRocket");
+    if (!container) return;
+    var prevRow = container.querySelector(".ship-row");
+    var prevScrollLeft = prevRow ? prevRow.scrollLeft : 0;
+    var effectiveByShip = {};
+    var html = '<div class="ship-row">';
+    for (var i = 0; i < SHOP_SHIPS.length; i++) {
+      var s = SHOP_SHIPS[i];
+      var owned = ownedShips.indexOf(s.id) !== -1;
+      var isEquipped = selectedShip === s.id;
+      var parts = SHIP_PARTS[s.id];
+      var activePart = shopActivePart[s.id] || parts[0].key;
+      var effectiveColors = mergeColors(shipPartColors[s.id] || DEFAULT_PART_COLORS[s.id], pendingShipColors[s.id]);
+      effectiveByShip[s.id] = effectiveColors;
+      var hasPending = pendingShipColors[s.id] && Object.keys(pendingShipColors[s.id]).length > 0;
+      html += '<div class="ship-card' + (isEquipped ? ' equipped' : '') + '" data-ship="' + s.id + '">';
+      html += '<div class="ship-name">' + s.name.toUpperCase() + '</div>';
+      html += '<canvas class="ship-canvas" width="100" height="112" data-ship="' + s.id + '"></canvas>';
+      html += '<div class="part-chips" data-ship="' + s.id + '">';
+      for (var p = 0; p < parts.length; p++) {
+        var pt = parts[p];
+        var chipActive = activePart === pt.key;
+        html += '<div class="part-chip' + (chipActive ? ' active' : '') + '" style="' + (chipActive ? 'background:' + themeColor + ';color:' + getContrastColor(themeColor) + ';' : '') + '" data-ship="' + s.id + '" data-part="' + pt.key + '">' + pt.label + '</div>';
+      }
+      html += '</div>';
+      html += '<div class="ship-colors" data-ship="' + s.id + '" data-part="' + activePart + '">';
+      var curColor = effectiveColors[activePart] || "#ffffff";
+      for (var c = 0; c < SHOP_COLORS.length; c++) {
+        var col = SHOP_COLORS[c];
+        html += '<div class="color-dot' + (curColor === col ? ' selected' : '') + '" style="background:' + col + '" data-ship="' + s.id + '" data-part="' + activePart + '" data-color="' + col + '"></div>';
+      }
+      html += '</div>';
+      html += '<button class="ship-buy-btn save-btn' + (hasPending ? ' active' : '') + '" data-action="save-color" data-ship="' + s.id + '"' + (hasPending ? '' : ' disabled') + '>SAVE</button>';
+      if (s.cost > 0) {
+        html += '<div class="ship-cost">' + DIAMOND_ICON_SVG + s.cost + '</div>';
+      } else {
+        html += '<div class="ship-cost">FREE</div>';
+      }
+      if (isEquipped) {
+        html += '<button class="ship-buy-btn equipped-btn" disabled>EQUIPPED</button>';
+      } else if (owned) {
+        html += '<button class="ship-buy-btn can-buy" data-action="select" data-ship="' + s.id + '">SELECT</button>';
+      } else if (diamonds >= s.cost) {
+        html += '<button class="ship-buy-btn can-buy" data-action="buy" data-ship="' + s.id + '">BUY</button>';
+      } else {
+        html += '<button class="ship-buy-btn locked" data-action="buy" data-ship="' + s.id + '">BUY</button>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+    container.innerHTML = html;
+    var newRow = container.querySelector(".ship-row");
+    if (newRow) newRow.scrollLeft = prevScrollLeft;
+
+    var canvases = container.querySelectorAll(".ship-canvas");
+    for (var k = 0; k < canvases.length; k++) {
+      var cv = canvases[k];
+      var shipId = cv.getAttribute("data-ship");
+      var pctx = cv.getContext("2d");
+      pctx.clearRect(0, 0, cv.width, cv.height);
+      withCtx(pctx, (function (id, cvv) {
+        return function () {
+          ctx.save();
+          ctx.translate(cvv.width / 2, cvv.height / 2 + 8);
+          var pw = cvv.width * 0.72, ph = cvv.height * 0.7;
+          var colors = effectiveByShip[id] || DEFAULT_PART_COLORS[id];
+          if (id === "rocket") paintRocketPreview(pw, ph, colors);
+          else if (id === "helicopter") paintHelicopter(pw, ph, colors);
+          else if (id === "jet") paintJet(pw, ph, colors);
+          ctx.restore();
+        };
+      })(shipId, cv));
+    }
+
+    var chips = container.querySelectorAll(".part-chip");
+    for (var pc = 0; pc < chips.length; pc++) {
+      chips[pc].addEventListener("click", function () {
+        var sid = this.getAttribute("data-ship");
+        var part = this.getAttribute("data-part");
+        shopActivePart[sid] = part;
+        renderShopRocketTab();
+      });
+    }
+
+    var dots = container.querySelectorAll(".color-dot");
+    for (var d = 0; d < dots.length; d++) {
+      dots[d].addEventListener("click", function () {
+        var sid = this.getAttribute("data-ship");
+        var part = this.getAttribute("data-part");
+        var col = this.getAttribute("data-color");
+        if (ownedShips.indexOf(sid) === -1) return;
+        if (!pendingShipColors[sid]) pendingShipColors[sid] = {};
+        pendingShipColors[sid][part] = col;
+        renderShopRocketTab();
+      });
+    }
+
+    var saveBtns = container.querySelectorAll('[data-action="save-color"]');
+    for (var sv = 0; sv < saveBtns.length; sv++) {
+      saveBtns[sv].addEventListener("click", function () {
+        var sid = this.getAttribute("data-ship");
+        if (!pendingShipColors[sid] || Object.keys(pendingShipColors[sid]).length === 0) return;
+        if (!shipPartColors[sid]) shipPartColors[sid] = {};
+        var k2;
+        for (k2 in pendingShipColors[sid]) shipPartColors[sid][k2] = pendingShipColors[sid][k2];
+        delete pendingShipColors[sid];
+        saveShopData();
+        renderShopRocketTab();
+        showInterstitialAd("rocket changed (" + sid + " colors saved)");
+      });
+    }
+
+    var buyBtns = container.querySelectorAll('[data-action="buy"]');
+    for (var b = 0; b < buyBtns.length; b++) {
+      buyBtns[b].addEventListener("click", function () {
+        var sid = this.getAttribute("data-ship");
+        var ship = null;
+        for (var m = 0; m < SHOP_SHIPS.length; m++) if (SHOP_SHIPS[m].id === sid) ship = SHOP_SHIPS[m];
+        if (!ship || diamonds < ship.cost) return;
+        diamonds -= ship.cost;
+        ownedShips.push(sid);
+        selectedShip = sid;
+        saveShopData();
+        sndDiamond();
+        renderShopRocketTab();
+        renderShopThemeTab();
+        showInterstitialAd("rocket changed (bought " + sid + ")");
+      });
+    }
+
+    var selectBtns = container.querySelectorAll('[data-action="select"]');
+    for (var sbi = 0; sbi < selectBtns.length; sbi++) {
+      selectBtns[sbi].addEventListener("click", function () {
+        var sid = this.getAttribute("data-ship");
+        selectedShip = sid;
+        saveShopData();
+        renderShopRocketTab();
+        showInterstitialAd("rocket changed (selected " + sid + ")");
+      });
+    }
+  }
+
+  var pendingGraphicColors = {};
+
+  function paintGraphicPreview(key, canvasEl) {
+    var pctx = canvasEl.getContext("2d");
+    pctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+    var hasPending = pendingGraphicColors.hasOwnProperty(key);
+    var original = graphicColors[key];
+    if (hasPending) graphicColors[key] = pendingGraphicColors[key];
+    withCtx(pctx, function () {
+      var cx = canvasEl.width / 2, cy = canvasEl.height / 2;
+      var r = Math.min(canvasEl.width, canvasEl.height) * 0.34;
+      if (key === "bg") {
+        ctx.fillStyle = graphicColors.bg;
+        ctx.strokeStyle = "#111";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.rect(3, 3, canvasEl.width - 6, canvasEl.height - 6);
+        ctx.fill();
+        ctx.stroke();
+      } else if (key === "star") {
+        drawSpike({ x: cx, y: cy, r: r });
+      } else if (key === "coin") {
+        drawCoin({ x: cx, y: cy, r: r, spin: 0 });
+      } else if (key === "magnet") {
+        drawMagnet({ x: cx, y: cy, r: r, pulse: 0 });
+      } else if (key === "shield") {
+        drawShieldIcon({ x: cx, y: cy, r: r, pulse: 0 });
+      }
+    });
+    if (hasPending) graphicColors[key] = original;
+  }
+
+  function renderShopGraphicTab() {
+    var container = document.getElementById("shopTabGraphic");
+    if (!container) return;
+    var categories = [
+      { key: "bg", label: "Background" },
+      { key: "star", label: "Star" },
+      { key: "coin", label: "Coin" },
+      { key: "magnet", label: "Magnet" },
+      { key: "shield", label: "Shield" }
+    ];
+    var html = "";
+    for (var i = 0; i < categories.length; i++) {
+      var cat = categories[i];
+      var effective = pendingGraphicColors.hasOwnProperty(cat.key) ? pendingGraphicColors[cat.key] : graphicColors[cat.key];
+      html += '<div class="graphic-row">';
+      html += '<canvas class="gfx-canvas" width="38" height="38" data-key="' + cat.key + '"></canvas>';
+      html += '<div class="graphic-row-label">' + cat.label + '</div>';
+      html += '<div class="graphic-row-dots">';
+      for (var c = 0; c < GRAPHIC_COLORS.length; c++) {
+        var col = GRAPHIC_COLORS[c];
+        var sel = effective === col ? " selected" : "";
+        html += '<div class="color-dot' + sel + '" style="background:' + col + '" data-key="' + cat.key + '" data-color="' + col + '"></div>';
+      }
+      html += "</div></div>";
+    }
+    var hasPendingAny = Object.keys(pendingGraphicColors).length > 0;
+    html += '<button class="ship-buy-btn save-btn' + (hasPendingAny ? ' active' : '') + '" id="graphicSaveBtn"' + (hasPendingAny ? '' : ' disabled') + '>SAVE</button>';
+    container.innerHTML = html;
+
+    var canvases = container.querySelectorAll(".gfx-canvas");
+    for (var k = 0; k < canvases.length; k++) {
+      paintGraphicPreview(canvases[k].getAttribute("data-key"), canvases[k]);
+    }
+
+    var dots = container.querySelectorAll(".color-dot");
+    for (var d = 0; d < dots.length; d++) {
+      dots[d].addEventListener("click", function () {
+        var key = this.getAttribute("data-key");
+        var col = this.getAttribute("data-color");
+        pendingGraphicColors[key] = col;
+        renderShopGraphicTab();
+      });
+    }
+
+    var saveBtn = document.getElementById("graphicSaveBtn");
+    if (saveBtn) {
+      saveBtn.addEventListener("click", function () {
+        if (Object.keys(pendingGraphicColors).length === 0) return;
+        var key2;
+        for (key2 in pendingGraphicColors) graphicColors[key2] = pendingGraphicColors[key2];
+        pendingGraphicColors = {};
+        saveGraphicData();
+        renderShopGraphicTab();
+        showInterstitialAd("graphic changed (saved)");
+      });
+    }
+  }
+
+  function renderShopThemeTab() {
+    var diamondCountText = document.getElementById("diamondCountText");
+    if (diamondCountText) diamondCountText.textContent = diamonds;
+    var container = document.getElementById("shopTabTheme");
+    if (!container) return;
+    var prevRow = container.querySelector(".template-list");
+    var prevScrollLeft = prevRow ? prevRow.scrollLeft : 0;
+    var html = '<div class="theme-intro">Pick a background for the gameplay screen:</div>';
+    html += '<div class="template-list">';
+    for (var i = 0; i < BG_TEMPLATES.length; i++) {
+      var t = BG_TEMPLATES[i];
+      var owned = ownedTemplates.indexOf(t.id) !== -1;
+      var isEq = bgTemplate === t.id;
+      html += '<div class="template-card' + (isEq ? ' equipped' : '') + '" data-template="' + t.id + '">';
+      html += '<canvas class="template-canvas" width="180" height="110" data-template="' + t.id + '"></canvas>';
+      html += '<div class="template-label">' + t.label + '</div>';
+      if (t.cost > 0) {
+        html += '<div class="ship-cost"><span class="diamond-ico">💎</span>' + t.cost + '</div>';
+      } else {
+        html += '<div class="ship-cost">FREE</div>';
+      }
+      if (isEq) {
+        html += '<button class="ship-buy-btn equipped-btn" disabled>EQUIPPED</button>';
+      } else if (owned) {
+        html += '<button class="ship-buy-btn can-buy" data-action="select" data-template="' + t.id + '">SELECT</button>';
+      } else if (diamonds >= t.cost) {
+        html += '<button class="ship-buy-btn can-buy" data-action="buy" data-template="' + t.id + '">BUY</button>';
+      } else {
+        html += '<button class="ship-buy-btn locked" data-action="buy" data-template="' + t.id + '">BUY</button>';
+      }
+      html += '</div>';
+    }
+    html += "</div>";
+    container.innerHTML = html;
+    var newRow = container.querySelector(".template-list");
+    if (newRow) newRow.scrollLeft = prevScrollLeft;
+
+    var canvases = container.querySelectorAll(".template-canvas");
+    for (var k = 0; k < canvases.length; k++) {
+      paintTemplatePreview(canvases[k].getAttribute("data-template"), canvases[k]);
+    }
+
+    var selectBtns = container.querySelectorAll('[data-action="select"]');
+    for (var s = 0; s < selectBtns.length; s++) {
+      selectBtns[s].addEventListener("click", function () {
+        var tid = this.getAttribute("data-template");
+        setBgTemplate(tid);
+        renderShopThemeTab();
+        showInterstitialAd("template changed (selected " + tid + ")");
+      });
+    }
+
+    var buyBtns = container.querySelectorAll('[data-action="buy"]');
+    for (var b = 0; b < buyBtns.length; b++) {
+      buyBtns[b].addEventListener("click", function () {
+        var id = this.getAttribute("data-template");
+        if (buyBgTemplate(id)) {
+          sndDiamond();
+          renderShopThemeTab();
+          renderShopRocketTab();
+          showInterstitialAd("template changed (bought " + id + ")");
+        }
+      });
+    }
+  }
+
+  function setupShopTabs() {
+    var tabRocket = document.getElementById("shopTabBtnRocket");
+    var tabGraphic = document.getElementById("shopTabBtnGraphic");
+    var tabTheme = document.getElementById("shopTabBtnTheme");
+    var panelRocket = document.getElementById("shopTabRocket");
+    var panelGraphic = document.getElementById("shopTabGraphic");
+    var panelTheme = document.getElementById("shopTabTheme");
+    function activate(tab, panel) {
+      tabRocket.classList.remove("active");
+      tabGraphic.classList.remove("active");
+      tabTheme.classList.remove("active");
+      panelRocket.style.display = "none";
+      panelGraphic.style.display = "none";
+      panelTheme.style.display = "none";
+      tab.classList.add("active");
+      panel.style.display = "";
+    }
+    if (tabRocket) tabRocket.addEventListener("click", function () { activate(tabRocket, panelRocket); });
+    if (tabGraphic) tabGraphic.addEventListener("click", function () { activate(tabGraphic, panelGraphic); });
+    if (tabTheme) tabTheme.addEventListener("click", function () { activate(tabTheme, panelTheme); });
+  }
+
+  /* ============================================================
      UPDATE LOGIC
      ============================================================ */
   function updateRocket(dt) {
-    var accel = W * 2.6;
-    var maxSpeed = W * 1.15;
+    var followGain = 18;  // higher = snappier/tighter finger-follow
+    var maxSpeed = W * 2.2;
     var friction = W * 4.2;
 
-    if (touchDir < 0) rocket.vx -= accel * dt;
-    else if (touchDir > 0) rocket.vx += accel * dt;
-    else {
+    if (isPressed && pointerX !== null) {
+      var desiredVx = (pointerX - rocket.x) * followGain;
+      rocket.vx = clamp(desiredVx, -maxSpeed, maxSpeed);
+    } else {
+      // finger lifted (or never touched yet) — settle to a stop, no drifting
       if (rocket.vx > 0) rocket.vx = Math.max(0, rocket.vx - friction * dt);
       else if (rocket.vx < 0) rocket.vx = Math.min(0, rocket.vx + friction * dt);
     }
-    rocket.vx = clamp(rocket.vx, -maxSpeed, maxSpeed);
+
     rocket.x += rocket.vx * dt;
-    rocket.angle = clamp(rocket.vx / maxSpeed, -1, 1) * 0.28;
+    rocket.angle = clamp(rocket.vx / maxSpeed, -1, 1) * 0.3;
 
     var half = rocket.width * 0.42;
     if (rocket.x - half < wallMargin) {
@@ -1050,6 +2931,7 @@
       }
 
       if (it.type === "coin") it.spin += dt * 4;
+      if (it.type === "diamond") it.spin += dt * 3;
       if (it.type === "magnet" || it.type === "shield") it.pulse += dt * 3;
 
       var dd = Math.sqrt(dist2(it.x, it.y, rocket.x, rocket.y));
@@ -1059,6 +2941,17 @@
         coins++;
         sndCoin();
         spawnParticles(it.x, it.y, 6);
+        items.splice(i, 1);
+        updateHUD();
+        pulseCoinHUD();
+        continue;
+      }
+      if (it.type === "diamond" && !it.taken && dd < rocketR + it.r) {
+        it.taken = true;
+        diamonds++;
+        saveShopData();
+        sndDiamond();
+        spawnParticles(it.x, it.y, 10);
         items.splice(i, 1);
         updateHUD();
         pulseCoinHUD();
@@ -1138,7 +3031,9 @@
   function crash() {
     if (state !== STATE_PLAYING) return;
     state = STATE_CRASHED;
+    stopEngineSound();
     sndCrash();
+    doVibrate(200);
     spawnParticles(rocket.x, rocket.y, 22);
     if (Math.round(distance) > bestDistance) bestDistance = Math.round(distance);
     if (coins > bestCoins) bestCoins = coins;
@@ -1151,8 +3046,9 @@
   function showGameOver() {
     finalDistEl.textContent = Math.round(distance);
     finalCoinsEl.textContent = coins;
-    bestDistTextEl.textContent = bestDistance;
-    bestCoinsTextEl.textContent = bestCoins;
+    renderShopRocketTab();
+    renderShopGraphicTab();
+    renderShopThemeTab();
     gameOverPopup.style.display = "flex";
   }
 
@@ -1161,8 +3057,16 @@
      ============================================================ */
   function drawBackground() {
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = "#fdfdfb";
-    ctx.fillRect(0, 0, W, H);
+    if (bgTemplate === "stars") {
+      drawBgStarsLayer(W, H, bgStars);
+    } else if (bgTemplate === "planets") {
+      drawBgPlanetsLayer(W, H);
+    } else if (bgTemplate === "galaxy") {
+      drawBgGalaxyLayer(W, H, galaxySpin, bgStars);
+    } else {
+      ctx.fillStyle = graphicColors.bg;
+      ctx.fillRect(0, 0, W, H);
+    }
   }
 
   function drawWalls() {
@@ -1196,7 +3100,7 @@
     ctx.scale(Math.max(0.15, squish), 1);
     ctx.strokeStyle = "#111";
     ctx.lineWidth = 2;
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = graphicColors.coin;
     ctx.beginPath();
     ctx.arc(0, 0, it.r, 0, Math.PI * 2);
     ctx.fill();
@@ -1204,10 +3108,47 @@
     ctx.restore();
   }
 
+  function drawDiamond(it) {
+    var squish = Math.abs(Math.cos(it.spin));
+    ctx.save();
+    ctx.translate(it.x, it.y);
+    ctx.scale(Math.max(0.2, squish), 1);
+    var r = it.r;
+    var pts = [[0, -r], [r * 0.72, -r * 0.15], [0, r], [-r * 0.72, -r * 0.15]];
+    var grad = ctx.createLinearGradient(0, -r, 0, r);
+    grad.addColorStop(0, "#e8fbff");
+    grad.addColorStop(0.45, "#7fe0f0");
+    grad.addColorStop(1, "#1f9fc4");
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+    ctx.lineWidth = 1.8;
+    ctx.strokeStyle = "#0d6f8c";
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, -r);
+    ctx.lineTo(0, r);
+    ctx.moveTo(-r * 0.72, -r * 0.15);
+    ctx.lineTo(r * 0.72, -r * 0.15);
+    ctx.strokeStyle = "rgba(255,255,255,0.6)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-r * 0.22, -r * 0.55);
+    ctx.lineTo(-r * 0.05, -r * 0.35);
+    ctx.strokeStyle = "rgba(255,255,255,0.85)";
+    ctx.lineWidth = 1.6;
+    ctx.stroke();
+    ctx.restore();
+  }
+
   function drawSpike(it) {
     ctx.strokeStyle = "#111";
     ctx.lineWidth = 2.2;
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = graphicColors.star;
     var pts = starPoints(it.x, it.y, 6, it.r, it.r * 0.42);
     ctx.beginPath();
     for (var i = 0; i < pts.length; i++) {
@@ -1226,7 +3167,7 @@
     ctx.scale(pulse, pulse);
     ctx.strokeStyle = "#111";
     ctx.lineWidth = 2.4;
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = graphicColors.magnet;
     var r = it.r;
     // horseshoe shape
     ctx.beginPath();
@@ -1251,7 +3192,7 @@
     ctx.scale(pulse, pulse);
     ctx.strokeStyle = "#111";
     ctx.lineWidth = 2.4;
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = graphicColors.shield;
     var r = it.r;
     var pts = [[0, -r], [r * 0.72, 0], [0, r], [-r * 0.72, 0]];
     ctx.beginPath();
@@ -1263,11 +3204,11 @@
     ctx.restore();
   }
 
-  function drawFlame() {
+  function drawFlame(color) {
     var flick = 0.75 + Math.sin(flameFlicker) * 0.15 + Math.random() * 0.1;
     var fw = rocket.width * 0.4 * flick;
     var fh = rocket.height * 0.42 * flick;
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = color || "#fff";
     ctx.strokeStyle = "#111";
     ctx.lineWidth = 2;
     var baseY = rocket.height * 0.42;
@@ -1293,7 +3234,7 @@
     var w = rocket.width, h = rocket.height;
 
     // flame first (behind body, drawn below)
-    drawFlame();
+    drawFlame(shipPartColors.rocket.flame);
 
     // body polygon (nose up)
     var body = [
@@ -1305,7 +3246,7 @@
       [-w * 0.34, h * 0.28],
       [-w * 0.32, -h * 0.12]
     ];
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = shipPartColors.rocket.body;
     ctx.strokeStyle = "#111";
     ctx.lineWidth = 2.4;
     ctx.beginPath();
@@ -1318,6 +3259,7 @@
     // fins
     var finL = [[-w * 0.3, h * 0.18], [-w * 0.62, h * 0.46], [-w * 0.18, h * 0.4]];
     var finR = [[w * 0.3, h * 0.18], [w * 0.62, h * 0.46], [w * 0.18, h * 0.4]];
+    ctx.fillStyle = shipPartColors.rocket.fins;
     ctx.beginPath();
     ctx.moveTo(finL[0][0], finL[0][1]); ctx.lineTo(finL[1][0], finL[1][1]); ctx.lineTo(finL[2][0], finL[2][1]); ctx.closePath();
     ctx.fill(); sketchPolygon(finL, true, 1);
@@ -1326,7 +3268,7 @@
     ctx.fill(); sketchPolygon(finR, true, 1);
 
     // window
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = shipPartColors.rocket.window;
     sketchCircle(0, -h * 0.05, w * 0.14, 2);
     ctx.beginPath();
     ctx.arc(0, -h * 0.05, w * 0.14, 0, Math.PI * 2);
@@ -1402,13 +3344,17 @@
     for (var i = 0; i < items.length; i++) {
       var it = items[i];
       if (it.type === "coin") drawCoin(it);
+      else if (it.type === "diamond") drawDiamond(it);
       else if (it.type === "spike") drawSpike(it);
       else if (it.type === "magnet") drawMagnet(it);
       else if (it.type === "shield") drawShieldIcon(it);
     }
+    drawAliens();
+    drawAlienBulletsAll();
+    drawRocketBulletsAll();
     drawTutorialGuide();
     drawParticles();
-    if (state === STATE_PLAYING || state === STATE_CRASHED || state === STATE_TUTORIAL) drawRocket();
+    if (state === STATE_PLAYING || state === STATE_CRASHED || state === STATE_TUTORIAL) drawPlayerShip();
   }
 
   /* ============================================================
@@ -1426,7 +3372,15 @@
       if (state !== STATE_PLAYING) { updateParticles(dt); updateHUD(); return; }
       updateSpawners(dt);
       updateMagnet(dt);
+      updateAliens(dt);
+      if (state !== STATE_PLAYING) { updateParticles(dt); updateHUD(); return; }
+      updateRocketBullets(dt);
+      updateAlienBullets(dt);
+      if (state !== STATE_PLAYING) { updateParticles(dt); updateHUD(); return; }
+      updateAlienWarningLights();
       flameFlicker += dt * 20;
+      heliRotorAngle += dt * 26;
+      updateBgTemplate(dt);
       updateHUD();
     } else if (state === STATE_TUTORIAL) {
       updateTutorial(dt);
@@ -1451,6 +3405,7 @@
     lastTime = 0;
     gamesPlayed++;
     saveStats();
+    startEngineSound();
   }
 
   /* ============================================================
@@ -1459,11 +3414,7 @@
   document.getElementById("startBtn").addEventListener("click", function () {
     ensureAudio();
     startOverlay.style.display = "none";
-    if (!tutorialSeen) {
-      beginTutorial();
-    } else {
-      beginPlay();
-    }
+    beginPlay();
   });
   document.getElementById("retryBtn").addEventListener("click", function () {
     ensureAudio();
@@ -1476,19 +3427,17 @@
      ============================================================ */
   loadStats();
   loadTutorialFlag();
+  loadShopData();
+  loadThemeData();
+  loadGraphicData();
+  loadTemplateData();
+  seedBgTemplateElements();
+  loadAudioPrefs();
+  setupShopTabs();
   resetGame();
   requestAnimationFrame(loop);
 
 })();
-</script>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker.register("sw.js").catch(function (e) {
-      console.log("Service worker registration failed:", e);
-    });
-  });
-}
 </script>
 </body>
 </html>
